@@ -1,0 +1,31 @@
+<ion-content class="landing-page">
+  <div class="language-selector">
+    <ion-button size="small" color="primary" shape="round">🌍</ion-button>
+  </div>
+
+  <div class="columns">
+    <!-- Entrenamientos -->
+    <div class="column" (click)="navigateToNextPage()">
+      <div class="column-content fancy-hover" style="background-image: url('assets/images/trainings.jpg')">
+        <h2>Entrenamientos</h2>
+        <p>Descubre dónde y cómo se realizarán los entrenamientos. Obtén información detallada sobre los horarios y descripciones de los procesos.</p>
+      </div>
+    </div>
+
+    <!-- Sesiones -->
+    <div class="column" (click)="navigateToNextPage()">
+      <div class="column-content fancy-hover" style="background-image: url('assets/images/sessions.jpg')">
+        <h2>Sesiones</h2>
+        <p>Gestiona las actividades concretas creadas por los entrenadores. Asigna entrenamientos y selecciona jugadores fácilmente.</p>
+      </div>
+    </div>
+
+    <!-- Roles de Usuarios -->
+    <div class="column" (click)="navigateToNextPage()">
+      <div class="column-content fancy-hover" style="background-image: url('assets/images/roles.jpg')">
+        <h2>Roles de Usuarios</h2>
+        <p>Explora los roles de Gestor, Entrenador y Jugador. Descubre cómo cada uno puede contribuir al éxito de tus entrenamientos.</p>
+      </div>
+    </div>
+  </div>
+</ion-content>

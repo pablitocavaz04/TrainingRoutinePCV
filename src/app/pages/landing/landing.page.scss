@@ -1,0 +1,119 @@
+.landing-page {
+    background: #000;
+    color: #fff;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  
+  .language-selector {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 10;
+  }
+  
+  .columns {
+    display: flex;
+    flex: 1;
+    justify-content: space-between;
+    align-items: stretch;
+    height: 100%;
+    overflow: hidden;
+  }
+  
+  .column {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+  
+  .column-content {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #fff;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.5s ease, filter 0.5s ease;
+  }
+  
+  .fancy-hover {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .fancy-hover::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: skewX(-30deg);
+    transition: left 0.5s ease;
+    z-index: 1;
+  }
+  
+  .fancy-hover:hover::before {
+    left: 100%;
+  }
+  
+  .fancy-hover:hover {
+    transform: scale(1.05);
+    filter: brightness(1.2);
+  }
+  
+  .column-content h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    z-index: 2;
+  }
+  
+  .column-content p {
+    font-size: 1rem;
+    z-index: 2;
+  }
+  
+  .column-content::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+  }
+  
+  .column-content * {
+    position: relative;
+    z-index: 2;
+  }
+  
+  /* Nuevo efecto hover alternativo */
+  .alternative-hover:hover {
+    animation: pulseEffect 1s infinite;
+  }
+  
+  @keyframes pulseEffect {
+    0%, 100% {
+      transform: scale(1);
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+    }
+    50% {
+      transform: scale(1.03);
+      box-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+    }
+  }
