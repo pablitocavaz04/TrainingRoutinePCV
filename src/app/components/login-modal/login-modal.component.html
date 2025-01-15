@@ -9,11 +9,11 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="login-modal-content">
   <form [formGroup]="loginForm" (ngSubmit)="login()">
     <ion-item>
-      <ion-label position="floating">Correo Electrónico</ion-label>
-      <ion-input type="email" formControlName="email"></ion-input>
+      <ion-icon name="mail-outline" slot="start"></ion-icon>
+      <ion-input placeholder="Correo Electrónico" type="email" formControlName="email"></ion-input>
     </ion-item>
     <div class="error" *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
       <small *ngIf="loginForm.get('email')?.errors?.['required']">El correo es obligatorio.</small>
@@ -21,8 +21,8 @@
     </div>
 
     <ion-item>
-      <ion-label position="floating">Contraseña</ion-label>
-      <ion-input [type]="passwordVisible | showPassword" formControlName="password"></ion-input>
+      <ion-icon name="lock-closed-outline" slot="start"></ion-icon>
+      <ion-input placeholder="Contraseña" [type]="passwordVisible ? 'text' : 'password'" formControlName="password"></ion-input>
       <ion-icon slot="end" [name]="passwordVisible ? 'eye-off' : 'eye'" (click)="togglePasswordVisibility('password')"></ion-icon>
     </ion-item>
     <div class="error" *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
@@ -31,8 +31,8 @@
     </div>
 
     <ion-item>
-      <ion-label position="floating">Repetir Contraseña</ion-label>
-      <ion-input [type]="repeatPasswordVisible | showPassword" formControlName="repeatPassword"></ion-input>
+      <ion-icon name="repeat-outline" slot="start"></ion-icon>
+      <ion-input placeholder="Repetir Contraseña" [type]="repeatPasswordVisible ? 'text' : 'password'" formControlName="repeatPassword"></ion-input>
       <ion-icon slot="end" [name]="repeatPasswordVisible ? 'eye-off' : 'eye'" (click)="togglePasswordVisibility('repeatPassword')"></ion-icon>
     </ion-item>
     <div class="error" *ngIf="loginForm.get('repeatPassword')?.invalid && loginForm.get('repeatPassword')?.touched">
@@ -46,6 +46,6 @@
   </form>
 
   <div class="register-link">
-    <p>¿No tienes cuenta? <span (click)="closeModal()">Regístrate aquí</span></p>
+    <p>¿No tienes cuenta? <a (click)="closeModal()" class="register-link-text">Regístrate aquí</a></p>
   </div>
 </ion-content>

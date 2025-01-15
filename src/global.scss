@@ -37,14 +37,24 @@
 @import "@ionic/angular/css/palettes/dark.system.css";
 
 :root {
-    --primary-color: #4CAF50; /* Verde principal */
-    --secondary-color: #2196F3; /* Azul secundario */
-    --accent-color: #FF5722; /* Naranja de acento */
-    --background-color: #f4f4f4; /* Fondo claro */
-    --text-color: #333; /* Color del texto */
-    --error-color: #f44336; /* Rojo para errores */
-  }
-  
+  --ion-color-primary: #4a90e2;
+  --ion-color-primary-rgb: 74, 144, 226;
+  --ion-color-primary-contrast: #ffffff;
+  --ion-color-primary-contrast-rgb: 255, 255, 255;
+  --ion-color-primary-shade: #407dc2;
+  --ion-color-primary-tint: #5aa3eb;
+
+  --ion-color-secondary: #50e3c2;
+  --ion-color-secondary-rgb: 80, 227, 194;
+  --ion-color-secondary-contrast: #ffffff;
+  --ion-color-secondary-contrast-rgb: 255, 255, 255;
+  --ion-color-secondary-shade: #45c4a8;
+  --ion-color-secondary-tint: #66e8ce;
+
+  --ion-background-color: #f4f4f4;
+  --ion-text-color: #000000;
+}
+
   @keyframes slideIn {
     from {
       transform: translateY(100%);
@@ -60,3 +70,38 @@
     animation: slideIn 0.5s ease-out;
   }
   
+  .login-modal-content {
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+    color: #333;
+  }
+  
+  ion-item {
+    background: rgba(240, 240, 240, 0.8);
+    border-radius: 12px;
+    margin: 12px 0;
+  }
+  
+  ion-item ion-icon {
+    color: var(--ion-color-primary);
+  }
+  
+  ion-button {
+    margin-top: 20px;
+    --background: linear-gradient(45deg, var(--ion-color-primary), var(--ion-color-secondary));
+    --background-activated: var(--ion-color-primary-shade);
+    --border-radius: 15px;
+  }
+  
+  .error {
+    color: var(--ion-color-danger);
+    font-size: 0.85rem;
+    margin-top: 5px;
+  }
+  
+  ion-toolbar {
+    --background: linear-gradient(45deg, #4a90e2, #50e3c2);
+  }
