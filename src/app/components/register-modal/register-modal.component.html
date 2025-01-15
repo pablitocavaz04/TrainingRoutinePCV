@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar color="secondary">
+    <ion-title>Regístrate</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="closeModal()">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="register-modal-content">
+  <form [formGroup]="registerForm" (ngSubmit)="register()">
+    <ion-item>
+      <ion-icon name="person-outline" slot="start"></ion-icon>
+      <ion-input placeholder="Nombre Completo" type="text" formControlName="fullName"></ion-input>
+    </ion-item>
+    <div class="error" *ngIf="registerForm.get('fullName')?.invalid && registerForm.get('fullName')?.touched">
+      <small *ngIf="registerForm.get('fullName')?.errors?.['required']">El nombre es obligatorio.</small>
+    </div>
+
+    <ion-item>
+      <ion-icon name="mail-outline" slot="start"></ion-icon>
+      <ion-input placeholder="Correo Electrónico" type="email" formControlName="email"></ion-input>
+    </ion-item>
+    <div class="error" *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched">
+      <small *ngIf="registerForm.get('email')?.errors?.['required']">El correo es obligatorio.</small>
+      <small *ngIf="registerForm.get('email')?.errors?.['email']">El correo no es válido.</small>
+    </div>
+
+    <ion-item>
+      <ion-icon name="lock-closed-outline" slot="start"></ion-icon>
+      <ion-input placeholder="Contraseña" [type]="passwordVisible ? 'text' : 'password'" formControlName="password"></ion-input>
+      <ion-icon slot="end" [name]="passwordVisible ? 'eye-off' : 'eye'" (click)="togglePasswordVisibility('password')"></ion-icon>
+    </ion-item>
+    
+    <div class="error" *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched">
+      <small *ngIf="registerForm.get('password')?.errors?.['required']">La contraseña es obligatoria.</small>
+      <small *ngIf="registerForm.get('password')?.errors?.['minlength']">Mínimo 6 caracteres.</small>
+    </div>
+
+    <ion-button expand="block" type="submit" [disabled]="registerForm.invalid">
+      Registrarse
+    </ion-button>
+  </form>
+</ion-content>

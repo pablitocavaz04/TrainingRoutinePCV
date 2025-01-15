@@ -11,11 +11,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { LoginModalComponent } from './components/login-modal/login-modal.component';
 import { ShowPasswordPipe } from './pipes/show-password.pipe';
+import { RegisterModalComponent } from './components/register-modal/register-modal.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginModalComponent,
+    RegisterModalComponent,
     ShowPasswordPipe],
   imports: [
     BrowserModule, 

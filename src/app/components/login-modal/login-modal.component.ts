@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
+import { RegisterModalComponent } from '../register-modal/register-modal.component';
 
 @Component({
   selector: 'app-login-modal',
   templateUrl: './login-modal.component.html',
   styleUrls: ['./login-modal.component.scss'],
-  standalone:false
+  standalone: false,
 })
 export class LoginModalComponent {
   loginForm: FormGroup;
@@ -46,5 +47,12 @@ export class LoginModalComponent {
     } else {
       console.log('Form is invalid');
     }
+  }
+
+  async openRegisterModal() {
+    const modal = await this.modalCtrl.create({
+      component: RegisterModalComponent,
+    });
+    await modal.present();
   }
 }
