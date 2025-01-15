@@ -34,3 +34,15 @@
     --background: linear-gradient(45deg, #50e3c2, #4a90e2);
   }
   
+  .login-link {
+    margin-top: 15px;
+    text-align: center;
+  }
+  
+  .login-link-text {
+    color: var(--ion-color-primary);
+    text-decoration: underline;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  

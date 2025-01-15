@@ -33,14 +33,27 @@
       <ion-input placeholder="Contraseña" [type]="passwordVisible ? 'text' : 'password'" formControlName="password"></ion-input>
       <ion-icon slot="end" [name]="passwordVisible ? 'eye-off' : 'eye'" (click)="togglePasswordVisibility('password')"></ion-icon>
     </ion-item>
-    
     <div class="error" *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched">
       <small *ngIf="registerForm.get('password')?.errors?.['required']">La contraseña es obligatoria.</small>
       <small *ngIf="registerForm.get('password')?.errors?.['minlength']">Mínimo 6 caracteres.</small>
+    </div>
+
+    <ion-item>
+      <ion-icon name="repeat-outline" slot="start"></ion-icon>
+      <ion-input placeholder="Repetir Contraseña" [type]="repeatPasswordVisible ? 'text' : 'password'" formControlName="repeatPassword"></ion-input>
+      <ion-icon slot="end" [name]="repeatPasswordVisible ? 'eye-off' : 'eye'" (click)="togglePasswordVisibility('repeatPassword')"></ion-icon>
+    </ion-item>
+    <div class="error" *ngIf="registerForm.get('repeatPassword')?.invalid && registerForm.get('repeatPassword')?.touched">
+      <small *ngIf="registerForm.get('repeatPassword')?.errors?.['required']">Debe repetir la contraseña.</small>
+      <small *ngIf="registerForm.get('repeatPassword')?.errors?.['mustMatch']">Las contraseñas no coinciden.</small>
     </div>
 
     <ion-button expand="block" type="submit" [disabled]="registerForm.invalid">
       Registrarse
     </ion-button>
   </form>
+
+  <div class="login-link">
+    <p>¿Ya tienes cuenta? <a (click)="openLoginModal()" class="login-link-text">Inicia sesión aquí</a></p>
+  </div>
 </ion-content>

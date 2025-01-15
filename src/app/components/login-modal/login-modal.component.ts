@@ -49,10 +49,13 @@ export class LoginModalComponent {
     }
   }
 
-  async openRegisterModal() {
+  async openRegisterModal(): Promise<void> {
+    await this.modalCtrl.dismiss();
+  
     const modal = await this.modalCtrl.create({
       component: RegisterModalComponent,
     });
     await modal.present();
   }
+  
 }
