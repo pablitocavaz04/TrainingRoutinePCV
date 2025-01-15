@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Iniciar Sesión</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="closeModal()">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="loginForm" (ngSubmit)="login()">
+    <ion-item>
+      <ion-label position="floating">Correo Electrónico</ion-label>
+      <ion-input type="email" formControlName="email"></ion-input>
+    </ion-item>
+    <div class="error" *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
+      <small *ngIf="loginForm.get('email')?.errors?.['required']">El correo es obligatorio.</small>
+      <small *ngIf="loginForm.get('email')?.errors?.['email']">El correo no es válido.</small>
+    </div>
+
+    <ion-item>
+      <ion-label position="floating">Contraseña</ion-label>
+      <ion-input [type]="passwordVisible | showPassword" formControlName="password"></ion-input>
+      <ion-icon slot="end" [name]="passwordVisible ? 'eye-off' : 'eye'" (click)="togglePasswordVisibility('password')"></ion-icon>
+    </ion-item>
+    <div class="error" *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+      <small *ngIf="loginForm.get('password')?.errors?.['required']">La contraseña es obligatoria.</small>
+      <small *ngIf="loginForm.get('password')?.errors?.['minlength']">Mínimo 6 caracteres.</small>
+    </div>
+
+    <ion-item>
+      <ion-label position="floating">Repetir Contraseña</ion-label>
+      <ion-input [type]="repeatPasswordVisible | showPassword" formControlName="repeatPassword"></ion-input>
+      <ion-icon slot="end" [name]="repeatPasswordVisible ? 'eye-off' : 'eye'" (click)="togglePasswordVisibility('repeatPassword')"></ion-icon>
+    </ion-item>
+    <div class="error" *ngIf="loginForm.get('repeatPassword')?.invalid && loginForm.get('repeatPassword')?.touched">
+      <small *ngIf="loginForm.get('repeatPassword')?.errors?.['required']">Debe repetir la contraseña.</small>
+      <small *ngIf="loginForm.get('repeatPassword')?.errors?.['mustMatch']">Las contraseñas no coinciden.</small>
+    </div>
+
+    <ion-button expand="block" type="submit" [disabled]="loginForm.invalid">
+      Iniciar Sesión
+    </ion-button>
+  </form>
+
+  <div class="register-link">
+    <p>¿No tienes cuenta? <span (click)="closeModal()">Regístrate aquí</span></p>
+  </div>
+</ion-content>
