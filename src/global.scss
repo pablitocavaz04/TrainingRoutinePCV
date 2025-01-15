@@ -35,3 +35,28 @@
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 @import "@ionic/angular/css/palettes/dark.system.css";
+
+:root {
+    --primary-color: #4CAF50; /* Verde principal */
+    --secondary-color: #2196F3; /* Azul secundario */
+    --accent-color: #FF5722; /* Naranja de acento */
+    --background-color: #f4f4f4; /* Fondo claro */
+    --text-color: #333; /* Color del texto */
+    --error-color: #f44336; /* Rojo para errores */
+  }
+  
+  @keyframes slideIn {
+    from {
+      transform: translateY(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  .animated-modal {
+    animation: slideIn 0.5s ease-out;
+  }
+  

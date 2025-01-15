@@ -15,10 +15,11 @@ export class LandingPage {
   async openLoginModal() {
     const modal = await this.modalCtrl.create({
       component: LoginModalComponent,
-      cssClass: 'login-modal',
+      cssClass: 'animated-modal', // Clase personalizada para animación
     });
     return await modal.present();
   }
+  
 
   navigateToNextPage() {
     const token = localStorage.getItem('authToken');

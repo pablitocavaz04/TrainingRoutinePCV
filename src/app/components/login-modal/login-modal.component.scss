@@ -1,17 +1,46 @@
-.error small {
-    color: red;
-    margin-left: 15px;
-  }
-  
-  .register-link {
-    margin-top: 20px;
-    text-align: center;
-  }
-  
-  .register-link span {
-    color: var(--ion-color-primary);
+ion-header {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+ion-toolbar {
+  --background: var(--primary-color);
+  --color: white;
+}
+
+ion-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+ion-content {
+  background-color: var(--background-color);
+  padding: 20px;
+  border-radius: 15px;
+}
+
+ion-item {
+  --background: white;
+  --border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+ion-button {
+  --background: var(--secondary-color);
+  --border-radius: 20px;
+  font-weight: bold;
+}
+
+.register-link {
+  margin-top: 20px;
+  text-align: center;
+
+  span {
+    color: var(--accent-color);
     cursor: pointer;
   }
+}
+
   
 ion-icon {
   padding-top: 20px;
