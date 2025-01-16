@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
 import { RegisterModalComponent } from '../register-modal/register-modal.component';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-modal',
@@ -17,7 +18,8 @@ export class LoginModalComponent {
   constructor(
     private fb: FormBuilder,
     private modalCtrl: ModalController,
-    private authService: AuthService
+    private authService: AuthService,
+    private router:Router
   ) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -41,30 +43,22 @@ export class LoginModalComponent {
     });
     await modal.present();
   }
-
   login(): void {
     if (this.loginForm.valid) {
       const { email, password } = this.loginForm.value;
-
+  
       this.authService.login({ identifier: email, password }).subscribe({
         next: async (response) => {
           console.log('Login exitoso:', response);
-
+  
           // Guardar el token en localStorage
           localStorage.setItem('authToken', response.jwt);
-
+  
           // Cerrar el modal
           await this.closeModal();
-
-          // Mostrar la splash page
-          const splashPage = document.querySelector('.splash-page');
-          if (splashPage) splashPage.classList.add('visible');
-
-          setTimeout(() => {
-            if (splashPage) splashPage.classList.remove('visible');
-            // Redirigir al home
-            window.location.href = '/home';
-          }, 3000); // Esperar 3 segundos
+  
+          // Redirigir a la splash page con el destino configurado
+          this.router.navigate(['/splash'], { queryParams: { redirect: '/home' } });
         },
         error: (err) => {
           console.error('Error en el login:', err);
@@ -75,4 +69,5 @@ export class LoginModalComponent {
       console.log('Formulario inválido');
     }
   }
+    
 }
