@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
-import { LoginModalComponent } from '../login-modal/login-modal.component';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { LoginModalComponent } from '../login-modal/login-modal.component';
 
 @Component({
   selector: 'app-register-modal',
@@ -49,7 +49,6 @@ export class RegisterModalComponent {
   async openLoginModal(): Promise<void> {
     await this.modalController.dismiss();
 
-    // Crear y presentar el modal de login
     const modal = await this.modalController.create({
       component: LoginModalComponent,
     });
@@ -78,9 +77,17 @@ export class RegisterModalComponent {
           };
   
           this.authService.createPersona(personaData, token).subscribe({
-            next: (personaResponse) => {
+            next: async (personaResponse) => {
               console.log('Persona creada:', personaResponse);
-              this.closeModal();
+  
+              // Cerrar el modal de registro
+              await this.closeModal();
+  
+              // Abrir el modal de login
+              const modal = await this.modalController.create({
+                component: LoginModalComponent,
+              });
+              await modal.present();
             },
             error: (err) => {
               console.error('Error creando persona:', err);
