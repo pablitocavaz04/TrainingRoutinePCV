@@ -13,12 +13,14 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { LoginModalComponent } from './components/login-modal/login-modal.component';
 import { ShowPasswordPipe } from './pipes/show-password.pipe';
 import { RegisterModalComponent } from './components/register-modal/register-modal.component';
+import { NavigationBarComponent } from './components/navigation-bar/navigation-bar.component';
 @NgModule({
   declarations: [
     AppComponent,
     LoginModalComponent,
     RegisterModalComponent,
-    ShowPasswordPipe],
+    ShowPasswordPipe,
+    NavigationBarComponent],
   imports: [
     BrowserModule, 
     IonicModule.forRoot(), 

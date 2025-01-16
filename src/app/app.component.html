@@ -1,3 +1,5 @@
 <ion-app>
+  <!-- Muestra la barra de navegación solo si no estamos en splash o landing -->
+  <app-navigation-bar *ngIf="!isSplashOrLanding"></app-navigation-bar>
   <ion-router-outlet></ion-router-outlet>
 </ion-app>

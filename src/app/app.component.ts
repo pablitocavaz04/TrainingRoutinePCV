@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -7,5 +8,14 @@ import { Component } from '@angular/core';
   standalone: false,
 })
 export class AppComponent {
-  constructor() {}
+  isSplashOrLanding = false;
+
+  constructor(private router: Router) {
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        // Comprueba si la ruta actual es splash o landing
+        this.isSplashOrLanding = event.urlAfterRedirects.includes('/splash') || event.urlAfterRedirects.includes('/landing');
+      }
+    });
+  }
 }
