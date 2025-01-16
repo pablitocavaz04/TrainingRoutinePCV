@@ -11,6 +11,7 @@
 
 <ion-content class="login-modal-content">
   <form [formGroup]="loginForm" (ngSubmit)="login()">
+    <!-- Correo Electrónico -->
     <ion-item>
       <ion-icon name="mail-outline" slot="start"></ion-icon>
       <ion-input placeholder="Correo Electrónico" type="email" formControlName="email"></ion-input>
@@ -20,33 +21,25 @@
       <small *ngIf="loginForm.get('email')?.errors?.['email']">El correo no es válido.</small>
     </div>
 
+    <!-- Contraseña -->
     <ion-item>
       <ion-icon name="lock-closed-outline" slot="start"></ion-icon>
       <ion-input placeholder="Contraseña" [type]="passwordVisible ? 'text' : 'password'" formControlName="password"></ion-input>
-      <ion-icon slot="end" [name]="passwordVisible ? 'eye-off' : 'eye'" (click)="togglePasswordVisibility('password')"></ion-icon>
+      <ion-icon slot="end" [name]="passwordVisible ? 'eye-off' : 'eye'" (click)="togglePasswordVisibility()"></ion-icon>
     </ion-item>
     <div class="error" *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
       <small *ngIf="loginForm.get('password')?.errors?.['required']">La contraseña es obligatoria.</small>
       <small *ngIf="loginForm.get('password')?.errors?.['minlength']">Mínimo 6 caracteres.</small>
     </div>
 
-    <ion-item>
-      <ion-icon name="repeat-outline" slot="start"></ion-icon>
-      <ion-input placeholder="Repetir Contraseña" [type]="repeatPasswordVisible ? 'text' : 'password'" formControlName="repeatPassword"></ion-input>
-      <ion-icon slot="end" [name]="repeatPasswordVisible ? 'eye-off' : 'eye'" (click)="togglePasswordVisibility('repeatPassword')"></ion-icon>
-    </ion-item>
-    <div class="error" *ngIf="loginForm.get('repeatPassword')?.invalid && loginForm.get('repeatPassword')?.touched">
-      <small *ngIf="loginForm.get('repeatPassword')?.errors?.['required']">Debe repetir la contraseña.</small>
-      <small *ngIf="loginForm.get('repeatPassword')?.errors?.['mustMatch']">Las contraseñas no coinciden.</small>
-    </div>
-
+    <!-- Botón de Iniciar Sesión -->
     <ion-button expand="block" type="submit" [disabled]="loginForm.invalid">
       Iniciar Sesión
     </ion-button>
   </form>
 
+  <!-- Enlace para abrir el modal de registro -->
   <div class="register-link">
     <p>¿No tienes cuenta? <a (click)="openRegisterModal()" class="register-link-text">Regístrate aquí</a></p>
   </div>
-  
 </ion-content>

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
 import { RegisterModalComponent } from '../register-modal/register-modal.component';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
   selector: 'app-login-modal',
@@ -12,50 +13,66 @@ import { RegisterModalComponent } from '../register-modal/register-modal.compone
 export class LoginModalComponent {
   loginForm: FormGroup;
   passwordVisible = false;
-  repeatPasswordVisible = false;
 
-  constructor(private fb: FormBuilder, private modalCtrl: ModalController) {
+  constructor(
+    private fb: FormBuilder,
+    private modalCtrl: ModalController,
+    private authService: AuthService
+  ) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
-      repeatPassword: ['', [Validators.required]],
     });
   }
 
-  togglePasswordVisibility(field: string) {
-    if (field === 'password') {
-      this.passwordVisible = !this.passwordVisible;
-    } else if (field === 'repeatPassword') {
-      this.repeatPasswordVisible = !this.repeatPasswordVisible;
-    }
+  togglePasswordVisibility() {
+    this.passwordVisible = !this.passwordVisible;
   }
 
-  closeModal() {
-    this.modalCtrl.dismiss();
-  }
-
-  login() {
-    if (this.loginForm.valid) {
-      const { email, password, repeatPassword } = this.loginForm.value;
-      if (password !== repeatPassword) {
-        console.error('Passwords do not match');
-        this.loginForm.get('repeatPassword')?.setErrors({ mustMatch: true });
-        return;
-      }
-      console.log('Login credentials:', email, password);
-      this.modalCtrl.dismiss();
-    } else {
-      console.log('Form is invalid');
-    }
+  async closeModal() {
+    await this.modalCtrl.dismiss();
   }
 
   async openRegisterModal(): Promise<void> {
     await this.modalCtrl.dismiss();
-  
+
     const modal = await this.modalCtrl.create({
       component: RegisterModalComponent,
     });
     await modal.present();
   }
-  
+
+  login(): void {
+    if (this.loginForm.valid) {
+      const { email, password } = this.loginForm.value;
+
+      this.authService.login({ identifier: email, password }).subscribe({
+        next: async (response) => {
+          console.log('Login exitoso:', response);
+
+          // Guardar el token en localStorage
+          localStorage.setItem('authToken', response.jwt);
+
+          // Cerrar el modal
+          await this.closeModal();
+
+          // Mostrar la splash page
+          const splashPage = document.querySelector('.splash-page');
+          if (splashPage) splashPage.classList.add('visible');
+
+          setTimeout(() => {
+            if (splashPage) splashPage.classList.remove('visible');
+            // Redirigir al home
+            window.location.href = '/home';
+          }, 3000); // Esperar 3 segundos
+        },
+        error: (err) => {
+          console.error('Error en el login:', err);
+          // Mostrar un mensaje de error si es necesario
+        },
+      });
+    } else {
+      console.log('Formulario inválido');
+    }
+  }
 }
