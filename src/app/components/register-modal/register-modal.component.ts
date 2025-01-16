@@ -59,18 +59,25 @@ export class RegisterModalComponent {
   register(): void {
     if (this.registerForm.valid) {
       const { fullName, email, password } = this.registerForm.value;
-
-      // Paso 1: Crear el usuario en Strapi
+  
+      // Paso 1: Registrar el usuario
       this.authService.register({ username: fullName, email, password }).subscribe({
         next: (userResponse) => {
           console.log('Usuario creado:', userResponse);
-
-          // Paso 2: Crear la persona asociada en la colección Personas
+  
+          // Extraer el token y el ID del usuario
+          const token = userResponse.jwt;
+          const userId = userResponse.user.id;
+  
+          // Paso 2: Crear la persona asociada
           const personaData = {
-            rol: 'Gestor', // Asignar el rol "Gestor"
-            user: userResponse.user.id, // Relacionar con el ID del usuario creado
+            data: {
+              Rol: 'Gestor',
+              user: userId,
+            },
           };
-          this.authService.createPersona(personaData).subscribe({
+  
+          this.authService.createPersona(personaData, token).subscribe({
             next: (personaResponse) => {
               console.log('Persona creada:', personaResponse);
               this.closeModal();
@@ -86,4 +93,5 @@ export class RegisterModalComponent {
       });
     }
   }
+  
 }
