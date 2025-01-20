@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Entrenamientos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="trainings-container">
+    <ion-card *ngFor="let entrenamiento of entrenamientos">
+      <img [src]="entrenamiento.imagen" alt="Imagen de entrenamiento" />
+      <ion-card-header>
+        <ion-card-title>{{ entrenamiento.nombre }}</ion-card-title>
+        <ion-card-subtitle>{{ entrenamiento.fecha }}</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <p>{{ entrenamiento.descripcion }}</p>
+      </ion-card-content>
+      <div class="card-actions">
+        <ion-button fill="solid" color="secondary">
+          <ion-icon name="create-outline" slot="start"></ion-icon>
+          Editar
+        </ion-button>
+        <ion-button fill="solid" color="danger">
+          <ion-icon name="trash-outline" slot="start"></ion-icon>
+          Eliminar
+        </ion-button>
+      </div>
+    </ion-card>
+  </div>
+  <ion-fab vertical="bottom" horizontal="start" slot="fixed">
+    <ion-fab-button color="secondary">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
