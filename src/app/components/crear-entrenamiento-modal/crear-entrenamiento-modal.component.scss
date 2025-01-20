@@ -1,0 +1,35 @@
+.create-modal-content {
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+  color: #333;
+}
+
+ion-item {
+  background: rgba(240, 240, 240, 0.8);
+  border-radius: 12px;
+  margin: 12px 0;
+}
+
+ion-item ion-icon {
+  color: var(--ion-color-secondary);
+}
+
+ion-button {
+  margin-top: 20px;
+  --background: linear-gradient(45deg, var(--ion-color-secondary), var(--ion-color-primary));
+  --background-activated: var(--ion-color-secondary-shade);
+  --border-radius: 15px;
+}
+
+.error {
+  color: var(--ion-color-danger);
+  font-size: 0.85rem;
+  margin-top: 5px;
+}
+
+ion-toolbar {
+  --background: linear-gradient(45deg, #50e3c2, #4a90e2) !important;
+}

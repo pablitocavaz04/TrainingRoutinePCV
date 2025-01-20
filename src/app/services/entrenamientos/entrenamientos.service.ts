@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-// Interfaz para la estructura de los entrenamientos
 export interface Entrenamiento {
   id: number;
   attributes: {
@@ -13,29 +12,38 @@ export interface Entrenamiento {
       data?: {
         attributes?: {
           formats?: {
-            thumbnail?: { url: string };
+            thumbnail?: {
+              url: string;
+            };
           };
-          url?: string;
+          url: string;
         };
       };
     };
   };
 }
 
-// Interfaz para la respuesta completa de la API
-export interface EntrenamientosResponse {
-  data: Entrenamiento[];
-}
-
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class EntrenamientosService {
   private apiUrl = 'http://localhost:1337/api/entrenamientos?populate=entreno';
 
   constructor(private http: HttpClient) {}
 
-  getEntrenamientos(): Observable<EntrenamientosResponse> {
-    return this.http.get<EntrenamientosResponse>(this.apiUrl);
+  getEntrenamientos(): Observable<any> {
+    return this.http.get<any>(this.apiUrl);
+  }
+
+  crearEntrenamiento(entrenamiento: { nombre: string; descripcion: string; fecha: string }): Observable<any> {
+    const url = 'http://localhost:1337/api/entrenamientos';
+    const body = {
+      data: {
+        nombre: entrenamiento.nombre,
+        descripcion: entrenamiento.descripcion,
+        fecha: entrenamiento.fecha,
+      },
+    };
+    return this.http.post(url, body);
   }
 }

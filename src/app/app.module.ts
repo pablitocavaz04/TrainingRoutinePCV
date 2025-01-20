@@ -14,13 +14,15 @@ import { LoginModalComponent } from './components/login-modal/login-modal.compon
 import { ShowPasswordPipe } from './pipes/show-password.pipe';
 import { RegisterModalComponent } from './components/register-modal/register-modal.component';
 import { NavigationBarComponent } from './components/navigation-bar/navigation-bar.component';
+import { CrearEntrenamientoModalComponent } from './components/crear-entrenamiento-modal/crear-entrenamiento-modal.component';
 @NgModule({
   declarations: [
     AppComponent,
     LoginModalComponent,
     RegisterModalComponent,
     ShowPasswordPipe,
-    NavigationBarComponent],
+    NavigationBarComponent,
+    CrearEntrenamientoModalComponent],
   imports: [
     BrowserModule, 
     IonicModule.forRoot(), 

@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar color="secondary">
+    <ion-title>Crear Entrenamiento</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="cerrarModal()">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="create-modal-content">
+  <form [formGroup]="entrenamientoForm" (ngSubmit)="crearEntrenamiento()">
+    <!-- Nombre -->
+    <ion-item>
+      <ion-icon name="clipboard-outline" slot="start"></ion-icon>
+      <ion-input placeholder="Nombre del entrenamiento" formControlName="nombre" required></ion-input>
+    </ion-item>
+    <div class="error" *ngIf="entrenamientoForm.get('nombre')?.invalid && entrenamientoForm.get('nombre')?.touched">
+      <small>El nombre es obligatorio.</small>
+    </div>
+
+    <!-- Descripción -->
+    <ion-item>
+      <ion-icon name="document-text-outline" slot="start"></ion-icon>
+      <ion-textarea placeholder="Descripción" formControlName="descripcion" required></ion-textarea>
+    </ion-item>
+    <div class="error" *ngIf="entrenamientoForm.get('descripcion')?.invalid && entrenamientoForm.get('descripcion')?.touched">
+      <small>La descripción es obligatoria.</small>
+    </div>
+
+    <!-- Fecha -->
+    <ion-item>
+      <ion-icon name="calendar-outline" slot="start"></ion-icon>
+      <ion-datetime formControlName="fecha" placeholder="Fecha" displayFormat="YYYY-MM-DD"></ion-datetime>
+    </ion-item>
+    <div class="error" *ngIf="entrenamientoForm.get('fecha')?.invalid && entrenamientoForm.get('fecha')?.touched">
+      <small>La fecha es obligatoria.</small>
+    </div>
+
+    <!-- Botón de Crear -->
+    <ion-button expand="block" type="submit" [disabled]="!entrenamientoForm.valid">
+      Crear Entrenamiento
+    </ion-button>
+  </form>
+</ion-content>

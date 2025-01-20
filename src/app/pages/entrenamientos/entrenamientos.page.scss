@@ -1,28 +1,28 @@
 ion-content {
   padding: 1rem;
-  background: #f9f9f9; /* Fondo limpio */
+  background: #f9f9f9; 
 }
 
 .trainings-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 1.5rem; /* Espaciado entre las cards */
-  margin-top: 1rem; /* Separación de la barra de navegación */
+  gap: 1.5rem; 
+  margin-top: 1rem; 
 }
 
 ion-card {
-  width: 320px; /* Cards ligeramente más anchas */
+  width: 320px; 
   height: auto;
   background: #ffffff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
-  padding-bottom: 1rem; /* Espaciado inferior para los botones */
-  transition: transform 0.2s, box-shadow 0.2s; /* Transiciones suaves */
+  padding-bottom: 1rem; 
+  transition: transform 0.2s, box-shadow 0.2s; 
 
   img {
     width: 100%;
-    height: 150px; /* Imágenes ajustadas */
+    height: 150px; 
     object-fit: cover;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
@@ -49,24 +49,24 @@ ion-card {
   ion-card-content {
     padding: 0.5rem 1rem;
     font-size: 0.9rem;
-    color: #333; /* Texto más legible */
+    color: #333; 
     text-align: justify;
     line-height: 1.4;
-    word-spacing: normal; /* Espaciado normal */
+    word-spacing: normal; 
   }
 
   .card-actions {
     display: flex;
     justify-content: space-between;
-    align-items: center; /* Asegura la alineación vertical */
+    align-items: center; 
     padding: 0.5rem 1rem;
     margin-top: 0.5rem;
 
     ion-button {
       font-size: 0.8rem;
-      border-radius: 5px; /* Botones redondeados */
-      color: #ffffff; /* Texto blanco por defecto */
-      --background: #e0e0e0; /* Fondo gris claro como base */
+      border-radius: 5px; 
+      color: #ffffff; 
+      --background: #e0e0e0; 
     }
 
     ion-button[color="danger"] {
@@ -79,27 +79,27 @@ ion-card {
   }
 
   &:hover {
-    transform: scale(1.03); /* Efecto de ampliación al pasar el ratón */
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Sombras más fuertes */
+    transform: scale(1.03); 
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); 
   }
 }
 
 /* Botón flotante */
 ion-fab {
-  position: fixed !important; /* Asegura que el ion-fab esté fijo */
-  bottom: 1rem; /* Espaciado inferior */
-  left: 1rem !important; /* Lo movemos a la esquina inferior izquierda */
+  position: fixed !important; 
+  bottom: 1rem; 
+  left: 1rem !important;
 
   ion-fab-button {
-    --background: var(--ion-color-primary); /* Color de fondo */
-    --color: #ffffff; /* Color del icono */
-    box-shadow: none; /* Quitamos el recuadro o sombra */
-    opacity: 0.8; /* Transparencia */
-    transition: opacity 0.2s ease-in-out; /* Transición suave */
+    --background: var(--ion-color-primary); 
+    --color: #ffffff; 
+    box-shadow: none; 
+    opacity: 0.8; 
+    transition: opacity 0.2s ease-in-out; 
   }
 
   ion-fab-button:hover {
-    opacity: 1; /* Opacidad completa al pasar el ratón */
+    opacity: 1;
   }
 }
 
