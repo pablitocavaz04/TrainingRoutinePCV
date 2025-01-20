@@ -35,15 +35,24 @@ export class EntrenamientosService {
     return this.http.get<any>(this.apiUrl);
   }
 
-  crearEntrenamiento(entrenamiento: { nombre: string; descripcion: string; fecha: string }): Observable<any> {
+  crearEntrenamiento(entrenamiento: { nombre: string; descripcion: string; fecha: string; entreno?: number }): Observable<any> {
     const url = 'http://localhost:1337/api/entrenamientos';
     const body = {
       data: {
         nombre: entrenamiento.nombre,
         descripcion: entrenamiento.descripcion,
         fecha: entrenamiento.fecha,
+        entreno: entrenamiento.entreno, // Asociar la imagen
       },
     };
     return this.http.post(url, body);
+  }
+  
+
+  subirImagen(file: File): Observable<any> {
+    const url = 'http://localhost:1337/api/upload';
+    const formData = new FormData();
+    formData.append('files', file);
+    return this.http.post(url, formData);
   }
 }
