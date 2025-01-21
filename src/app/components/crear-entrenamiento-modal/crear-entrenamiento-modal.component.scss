@@ -8,12 +8,18 @@
   height: 100%; /* Ocupa todo el espacio disponible */
   width: 100%; /* Ocupa todo el ancho disponible */
   box-sizing: border-box;
+  overflow-y: auto; /* Habilitar desplazamiento si es necesario */
 }
 
 ion-item {
   background: rgba(240, 240, 240, 0.8);
   border-radius: 12px;
   margin: 12px 0;
+  width: 100%; /* Asegura que los items ocupen todo el ancho */
+}
+
+ion-item:first-child {
+  margin-top: 40px; /* Bajamos más el primer campo */
 }
 
 ion-item ion-icon {
@@ -46,10 +52,6 @@ ion-toolbar {
   transition: background-color 0.3s ease;
 }
 
-.drag-and-drop.dragging {
-  background-color: rgba(200, 200, 200, 0.5);
-}
-
 .drag-and-drop img {
   max-width: 100%;
   max-height: 150px;
@@ -61,4 +63,27 @@ ion-toolbar {
   color: var(--ion-color-danger);
   font-size: 0.85rem;
   margin-top: 5px;
+}
+
+/* Responsive para móviles */
+@media screen and (max-width: 768px) {
+  .create-modal-content {
+    height: 100vh; /* En móviles, ocupa todo el alto */
+    width: 100vw; /* En móviles, ocupa todo el ancho */
+    border-radius: 0; /* Sin bordes redondeados en móviles */
+    padding: 10px; /* Reducir padding en móviles */
+    position: fixed; /* Fijar posición a la pantalla */
+    top: 0;
+    left: 0;
+    overflow-y: auto; /* Permitir desplazamiento */
+  }
+
+  ion-item {
+    margin: 10px 0; /* Ajustar márgenes */
+    width: 100%; /* Asegurar ancho completo */
+  }
+
+  ion-item:first-child {
+    margin-top: 60px; /* Espacio adicional en móviles */
+  }
 }

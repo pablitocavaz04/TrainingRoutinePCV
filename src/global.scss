@@ -68,11 +68,23 @@
   }
 
   .custom-modal-large {
-    --width: 70vw; /* Hacer el modal más ancho */
-    --height: 70vh; /* Hacer el modal más alto */
-    --max-width: none; /* Sin límite de ancho */
-    --max-height: none; /* Sin límite de altura */
-    --border-radius: 20px; /* Bordes redondeados */
-    
+    --width: 75vw;
+    --height: 75vh;
+    --max-width: 100%;
+    --max-height: 100%;
+    --border-radius: 20px;
+  
+    @media screen and (max-width: 768px) {
+      --width: 100vw;
+      --height: 100vh;
+      --border-radius: 0; /* Sin bordes redondeados en móviles */
+    }
+  }
+  
+  ion-content {
+    --padding-top: 0;
+    --padding-bottom: 0;
+    --padding-start: 0;
+    --padding-end: 0;
   }
   
