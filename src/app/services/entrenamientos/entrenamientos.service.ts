@@ -60,4 +60,10 @@ export class EntrenamientosService {
     formData.append('files', file);
     return this.http.post(url, formData);
   }
+
+  eliminarEntrenamiento(id: number): Observable<any> {
+    const url = `http://localhost:1337/api/entrenamientos/${id}`;
+    return this.http.delete(url);
+  }
+  
 }
