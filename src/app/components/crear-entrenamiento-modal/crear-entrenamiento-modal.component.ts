@@ -12,8 +12,9 @@ import { EntrenamientosService } from 'src/app/services/entrenamientos/entrenami
 export class CrearEntrenamientoModalComponent {
   @Input() modoEdicion: boolean = false;
   @Input() entrenamientoData: any;
-
   entrenamientoForm: FormGroup;
+  tituloModal: string = ''; // Título dinámico
+  textoBoton: string = ''; // Texto dinámico del botón
   isDragging = false;
   imagenSeleccionada: File | null = null;
   imagenPreview: string | null = null;
@@ -32,6 +33,10 @@ export class CrearEntrenamientoModalComponent {
   }
 
   ngOnInit() {
+    this.tituloModal = this.modoEdicion ? 'Editar Entrenamiento' : 'Crear Entrenamiento';
+    this.textoBoton = this.modoEdicion ? 'Actualizar' : 'Crear';
+
+
     if (this.modoEdicion && this.entrenamientoData) {
       this.entrenamientoForm.patchValue({
         nombre: this.entrenamientoData.nombre,

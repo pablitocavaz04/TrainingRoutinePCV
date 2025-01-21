@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar color="secondary">
-    <ion-title>Crear Entrenamiento</ion-title>
+    <ion-title>{{tituloModal}}</ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="cerrarModal()">
         <ion-icon name="close"></ion-icon>
@@ -40,7 +40,7 @@
 
     <!-- Botón de Crear -->
     <ion-button expand="block" type="submit" [disabled]="!entrenamientoForm.valid">
-      Crear Entrenamiento
+      {{ textoBoton }}
     </ion-button>
   </form>
 
