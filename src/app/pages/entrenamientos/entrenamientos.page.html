@@ -16,7 +16,7 @@
         <p>{{ entrenamiento.descripcion }}</p>
       </ion-card-content>
       <div class="card-actions">
-        <ion-button fill="solid" color="secondary">
+        <ion-button fill="solid" color="secondary" (click)="abrirModalEditarEntrenamiento(entrenamiento)">
           <ion-icon name="create-outline" slot="start"></ion-icon>
           Editar
         </ion-button>

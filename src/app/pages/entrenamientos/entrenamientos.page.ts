@@ -56,4 +56,22 @@ export class EntrenamientosPage implements OnInit {
 
     await modal.present();
   }
+
+  async abrirModalEditarEntrenamiento(entrenamiento: any) {
+    const modal = await this.modalCtrl.create({
+      component: CrearEntrenamientoModalComponent,
+      cssClass: 'custom-modal-large',
+      componentProps: {
+        modoEdicion: true, // Indica que es para editar
+        entrenamientoData: entrenamiento, // Pasa los datos del entrenamiento
+      },
+    });
+
+    // Recargar la lista al cerrar el modal
+    modal.onDidDismiss().then(() => {
+      this.cargarEntrenamientos();
+    });
+
+    await modal.present();
+  }
 }

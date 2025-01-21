@@ -47,7 +47,12 @@ export class EntrenamientosService {
     };
     return this.http.post(url, body);
   }
-  
+
+  actualizarEntrenamiento(id: number, entrenamiento: any): Observable<any> {
+    const url = `http://localhost:1337/api/entrenamientos/${id}`;
+    const body = { data: entrenamiento };
+    return this.http.put(url, body);
+  }
 
   subirImagen(file: File): Observable<any> {
     const url = 'http://localhost:1337/api/upload';
