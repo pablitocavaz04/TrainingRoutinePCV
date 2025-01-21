@@ -5,6 +5,9 @@
   padding: 20px;
   box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
   color: #333;
+  height: 100%; /* Ocupa todo el espacio disponible */
+  width: 100%; /* Ocupa todo el ancho disponible */
+  box-sizing: border-box;
 }
 
 ion-item {
@@ -15,6 +18,11 @@ ion-item {
 
 ion-item ion-icon {
   color: var(--ion-color-secondary);
+}
+
+ion-datetime.center-calendar {
+  display: block;
+  margin: 0 auto; /* Centrar el calendario */
 }
 
 ion-button {
@@ -36,17 +44,17 @@ ion-toolbar {
   cursor: pointer;
   background-color: rgba(240, 240, 240, 0.5);
   transition: background-color 0.3s ease;
+}
 
-  &.dragging {
-    background-color: rgba(200, 200, 200, 0.5);
-  }
+.drag-and-drop.dragging {
+  background-color: rgba(200, 200, 200, 0.5);
+}
 
-  img {
-    max-width: 100%;
-    max-height: 150px;
-    margin-top: 1rem;
-    border-radius: 8px;
-  }
+.drag-and-drop img {
+  max-width: 100%;
+  max-height: 150px;
+  margin-top: 1rem;
+  border-radius: 8px;
 }
 
 .error {

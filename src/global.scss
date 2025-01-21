@@ -66,3 +66,13 @@
   .animated-modal {
     animation: slideIn 0.5s ease-out;
   }
+
+  .custom-modal-large {
+    --width: 70vw; /* Hacer el modal más ancho */
+    --height: 70vh; /* Hacer el modal más alto */
+    --max-width: none; /* Sin límite de ancho */
+    --max-height: none; /* Sin límite de altura */
+    --border-radius: 20px; /* Bordes redondeados */
+    
+  }
+  

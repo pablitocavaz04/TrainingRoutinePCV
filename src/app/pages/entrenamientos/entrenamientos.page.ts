@@ -46,6 +46,7 @@ export class EntrenamientosPage implements OnInit {
   async abrirModalCrearEntrenamiento() {
     const modal = await this.modalCtrl.create({
       component: CrearEntrenamientoModalComponent,
+      cssClass: 'custom-modal-large'
     });
 
     // Recargar la lista al cerrar el modal
