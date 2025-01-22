@@ -8,7 +8,7 @@ import { SesionesService } from 'src/app/services/sesiones/sesiones.service';
   standalone:false
 })
 export class HomePage implements OnInit {
-  sesiones: any[] = []; // Array para almacenar las sesiones
+  sesiones: any[] = [];
 
   constructor(private sesionesService: SesionesService) {}
 
@@ -17,21 +17,27 @@ export class HomePage implements OnInit {
   }
 
   cargarSesiones() {
-    this.sesionesService.getSesiones().subscribe({
-      next: (response) => {
-        this.sesiones = response.data.map((sesion: any) => ({
-          id: sesion.id,
-          nombre: sesion.attributes.nombre,
-          estado: sesion.attributes.estado,
-          imagen:
-            sesion.attributes.sesionpicture?.data?.attributes?.formats?.thumbnail?.url ||
-            sesion.attributes.sesionpicture?.data?.attributes?.url ||
-            null,
-        }));
-      },
-      error: (err) => {
-        console.error('Error al cargar sesiones:', err);
-      },
+    this.sesionesService.getSesiones().subscribe((response) => {
+      this.sesiones = response.data.map((item: any) => ({
+        id: item.id,
+        nombre: item.attributes.nombre,
+        estado: item.attributes.estado,
+        imagen:
+          item.attributes.sesionpicture?.data?.attributes?.formats?.thumbnail
+            ?.url || item.attributes.sesionpicture?.data?.attributes?.url,
+      }));
     });
+  }
+
+  abrirModalCrearSesion() {
+    console.log('Abrir modal para crear sesión');
+  }
+
+  editarSesion(sesion: any) {
+    console.log('Editar sesión:', sesion);
+  }
+
+  eliminarSesion(sesion: any) {
+    console.log('Eliminar sesión:', sesion);
   }
 }
