@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:1337/api';
+  private apiUrl = 'http://localhost:1337/api'; // URL base del backend
 
   constructor(private http: HttpClient) {}
 
@@ -21,14 +21,17 @@ export class AuthService {
     return this.http.post(`${this.apiUrl}/personas`, personaData, { headers });
   }
 
+  // Login del usuario
   login(credentials: { identifier: string; password: string }): Observable<any> {
     return this.http.post(`${this.apiUrl}/auth/local`, credentials);
   }
 
+  // Obtener el token del usuario logueado desde localStorage
   getToken(): string | null {
     return localStorage.getItem('authToken');
   }
 
+  // Obtener los datos del usuario logueado (incluyendo relación con persona y perfil)
   getUsuarioLogueado(): Observable<any> {
     const token = this.getToken();
     if (token) {

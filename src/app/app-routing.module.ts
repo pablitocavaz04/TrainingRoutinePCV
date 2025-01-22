@@ -25,10 +25,7 @@ const routes: Routes = [
     path: 'entrenamientos',
     loadChildren: () => import('./pages/entrenamientos/entrenamientos.module').then( m => m.EntrenamientosPageModule),
     canActivate: [AuthGuard],
-  },  {
-    path: 'perfil',
-    loadChildren: () => import('./pages/perfil/perfil.module').then( m => m.PerfilPageModule)
-  },
+  }
 
 
 ];
