@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Perfil del Usuario</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="perfil-container">
+    <!-- Imagen de perfil -->
+    <div class="imagen-perfil">
+      <img *ngIf="imagenPerfil" [src]="imagenPerfil" alt="Imagen de perfil" />
+      <div *ngIf="!imagenPerfil" class="placeholder">
+        <ion-icon name="person-circle-outline"></ion-icon>
+      </div>
+    </div>
+
+    <!-- Datos del usuario -->
+    <div class="datos-usuario">
+      <h2>{{ usuario?.username }}</h2>
+      <p>{{ usuario?.email }}</p>
+    </div>
+  </div>
+</ion-content>
