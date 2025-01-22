@@ -42,6 +42,7 @@ export class HomePage implements OnInit {
   async abrirModalCrearSesion() {
     const modal = await this.modalCtrl.create({
       component: CrearSesionModalComponent,
+      cssClass: 'custom-modal-large'
     });
   
     await modal.present();

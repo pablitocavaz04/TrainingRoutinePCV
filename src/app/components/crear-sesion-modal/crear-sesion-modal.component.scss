@@ -1,19 +1,89 @@
-.drag-drop-area {
-    border: 2px dashed var(--ion-color-medium);
-    border-radius: 10px;
-    padding: 20px;
-    text-align: center;
-    transition: background-color 0.3s;
-    cursor: pointer;
-  
-    &.dragover {
-      background-color: rgba(0, 0, 0, 0.1);
-    }
-  
-    img {
-      max-width: 100%;
-      max-height: 150px;
-      margin-top: 10px;
-    }
+.create-modal-content {
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+  color: #333;
+  height: 100%; /* Ocupa todo el espacio disponible */
+  width: 100%; /* Ocupa todo el ancho disponible */
+  box-sizing: border-box;
+  overflow-y: auto; /* Habilitar desplazamiento si es necesario */
+}
+
+ion-item {
+  background: rgba(240, 240, 240, 0.8);
+  border-radius: 12px;
+  margin: 12px 0;
+  width: 100%; /* Asegura que los items ocupen todo el ancho */
+}
+
+ion-item:first-child {
+  margin-top: 40px; /* Bajamos más el primer campo */
+}
+
+ion-item ion-icon {
+  color: var(--ion-color-secondary);
+}
+
+ion-datetime.center-calendar {
+  display: block;
+  margin: 0 auto; /* Centrar el calendario */
+}
+
+ion-button {
+  margin-top: 20px;
+  --background: linear-gradient(45deg, var(--ion-color-secondary), var(--ion-color-primary));
+  --background-activated: var(--ion-color-secondary-shade);
+  --border-radius: 15px;
+}
+
+ion-toolbar {
+  --background: linear-gradient(45deg, #50e3c2, #4a90e2) !important;
+}
+
+.drag-and-drop {
+  border: 2px dashed var(--ion-color-primary);
+  border-radius: 12px;
+  padding: 1rem;
+  text-align: center;
+  cursor: pointer;
+  background-color: rgba(240, 240, 240, 0.5);
+  transition: background-color 0.3s ease;
+}
+
+.drag-and-drop img {
+  max-width: 100%;
+  max-height: 150px;
+  margin-top: 1rem;
+  border-radius: 8px;
+}
+
+.error {
+  color: var(--ion-color-danger);
+  font-size: 0.85rem;
+  margin-top: 5px;
+}
+
+/* Responsive para móviles */
+@media screen and (max-width: 768px) {
+  .create-modal-content {
+    height: 100vh; /* En móviles, ocupa todo el alto */
+    width: 100vw; /* En móviles, ocupa todo el ancho */
+    border-radius: 0; /* Sin bordes redondeados en móviles */
+    padding: 10px; /* Reducir padding en móviles */
+    position: fixed; /* Fijar posición a la pantalla */
+    top: 0;
+    left: 0;
+    overflow-y: auto; /* Permitir desplazamiento */
   }
-  
+
+  ion-item {
+    margin: 10px 0; /* Ajustar márgenes */
+    width: 100%; /* Asegurar ancho completo */
+  }
+
+  ion-item:first-child {
+    margin-top: 60px; /* Espacio adicional en móviles */
+  }
+}

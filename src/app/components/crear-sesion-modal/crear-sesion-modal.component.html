@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar color="primary">
+  <ion-toolbar color="secondary">
     <ion-title>Crear Sesión</ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="cerrarModal()">
@@ -9,20 +9,25 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="create-modal-content">
   <form [formGroup]="sesionForm" (ngSubmit)="crearSesion()">
+    <!-- Nombre -->
     <ion-item>
-      <ion-label position="stacked">Nombre</ion-label>
+      <ion-icon name="clipboard-outline" slot="start"></ion-icon>
       <ion-input formControlName="nombre" placeholder="Nombre de la sesión"></ion-input>
     </ion-item>
 
+    <!-- Estado -->
     <ion-item>
+      <ion-icon name="toggle-outline" slot="start"></ion-icon>
       <ion-label>Estado</ion-label>
       <ion-toggle formControlName="estado"></ion-toggle>
     </ion-item>
 
+    <!-- Entrenador -->
     <ion-item>
-      <ion-label position="stacked">Entrenador</ion-label>
+      <ion-icon name="people-outline" slot="start"></ion-icon>
+      <ion-label>Entrenador</ion-label>
       <ion-select formControlName="entrenador" placeholder="Seleccionar entrenador">
         <ion-select-option *ngFor="let entrenador of entrenadores" [value]="entrenador.id">
           {{ entrenador.nombre }}
@@ -30,8 +35,10 @@
       </ion-select>
     </ion-item>
 
+    <!-- Entrenamiento -->
     <ion-item>
-      <ion-label position="stacked">Entrenamiento</ion-label>
+      <ion-icon name="barbell-outline" slot="start"></ion-icon>
+      <ion-label>Entrenamiento</ion-label>
       <ion-select formControlName="entrenamiento" placeholder="Seleccionar entrenamiento">
         <ion-select-option *ngFor="let entrenamiento of entrenamientos" [value]="entrenamiento.id">
           {{ entrenamiento.nombre }}
@@ -39,8 +46,10 @@
       </ion-select>
     </ion-item>
 
+    <!-- Jugadores -->
     <ion-item>
-      <ion-label position="stacked">Jugadores</ion-label>
+      <ion-icon name="person-add-outline" slot="start"></ion-icon>
+      <ion-label>Jugadores</ion-label>
       <ion-select formControlName="jugadores" multiple="true" placeholder="Seleccionar jugadores">
         <ion-select-option *ngFor="let jugador of jugadores" [value]="jugador.id">
           {{ jugador.nombre }}
@@ -48,29 +57,29 @@
       </ion-select>
     </ion-item>
 
-    <ion-item>
-      <ion-label position="stacked">Imagen de la Sesión</ion-label>
-      <div
-        class="drag-drop-area"
-        (dragover)="onDragOver($event)"
-        (dragleave)="onDragLeave($event)"
-        (drop)="onDrop($event)"
-      >
-        <p *ngIf="!imagenSesion">Arrastra y suelta una imagen aquí o haz clic para seleccionar</p>
-        <img *ngIf="imagenSesion" [src]="imagenSesion" alt="Vista previa de la imagen" />
-      </div>
-      <input
-        type="file"
-        accept="image/*"
-        hidden
-        #fileInput
-        (change)="onFileSelected($event)"
-      />
-      <ion-button expand="block" (click)="fileInput.click()">Seleccionar imagen</ion-button>
-    </ion-item>
-
+    <!-- Botón Crear Sesión -->
     <ion-button expand="block" type="submit" [disabled]="sesionForm.invalid">
       Crear Sesión
     </ion-button>
   </form>
+
+  <!-- Drag and Drop para la imagen -->
+  <div
+    class="drag-and-drop"
+    (dragover)="onDragOver($event)"
+    (dragleave)="onDragLeave($event)"
+    (drop)="onDrop($event)"
+    (click)="fileInput.click()"
+  >
+    <ion-icon name="cloud-upload-outline"></ion-icon>
+    <p *ngIf="!imagenSesion">Arrastra y suelta una imagen aquí o haz clic para seleccionar</p>
+    <img *ngIf="imagenSesion" [src]="imagenSesion" alt="Vista previa de la imagen" />
+    <input
+      type="file"
+      accept="image/*"
+      hidden
+      #fileInput
+      (change)="onFileSelected($event)"
+    />
+  </div>
 </ion-content>

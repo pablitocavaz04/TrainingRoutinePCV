@@ -51,15 +51,13 @@ class="drag-and-drop"
 (dragleave)="onDragLeave($event)"
 (drop)="onDrop($event)"
 [class.dragging]="isDragging"
+(click)="fileInput.click()"
 >
 <ion-icon name="cloud-upload-outline"></ion-icon>
 <p *ngIf="!imagenSeleccionada">Arrastra y suelta una imagen aquí, o haz clic para seleccionar una</p>
 <img *ngIf="imagenPreview" [src]="imagenPreview" alt="Vista previa de imagen" />
 <input type="file" hidden (change)="onFileSelected($event)" #fileInput />
 </div>
-
-<!-- Botón para disparar el input file -->
-<ion-button expand="block" (click)="fileInput.click()">Seleccionar Imagen</ion-button>
 <div class="error" *ngIf="errorImagen">
 <small>{{ errorImagen }}</small>
 </div>
