@@ -1,0 +1,20 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-title>Sesiones</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content>
+    <div class="sesiones-container">
+      <ion-card *ngFor="let sesion of sesiones">
+        <img *ngIf="sesion.imagen" [src]="sesion.imagen" alt="Imagen de la sesión" />
+        <ion-card-header>
+          <ion-card-title>{{ sesion.nombre }}</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <p>Estado: {{ sesion.estado ? 'Activa' : 'Inactiva' }}</p>
+        </ion-card-content>
+      </ion-card>
+    </div>
+  </ion-content>
+  
