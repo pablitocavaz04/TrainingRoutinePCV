@@ -2,15 +2,21 @@
   <div class="navbar-container">
     <a class="logo" routerLink="/home">MiGestión</a>
     <ul class="nav-links" [class.open]="menuOpen">
+      <!-- Imagen de perfil dentro del menú en móviles -->
+      <li *ngIf="imagenPerfil" class="profile-picture-mobile">
+        <img [src]="imagenPerfil" alt="Imagen de perfil" />
+      </li>
       <li><a routerLink="/home" routerLinkActive="active">Home</a></li>
       <li><a routerLink="/sesiones" routerLinkActive="active">Sesiones</a></li>
       <li><a routerLink="/entrenamientos" routerLinkActive="active">Entrenamientos</a></li>
       <li><a routerLink="/jugadores" routerLinkActive="active">Jugadores</a></li>
       <li><a routerLink="/entrenadores" routerLinkActive="active">Entrenadores</a></li>
     </ul>
-    <div class="profile-picture" *ngIf="imagenPerfil">
+    <!-- Imagen de perfil para escritorio -->
+    <div class="profile-picture desktop" *ngIf="imagenPerfil">
       <img [src]="imagenPerfil" alt="Imagen de perfil" />
     </div>
+    <!-- Botón hamburguesa -->
     <button class="burger" (click)="toggleMenu()">
       <span></span>
       <span></span>
