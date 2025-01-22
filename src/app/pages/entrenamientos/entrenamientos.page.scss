@@ -1,6 +1,17 @@
 ion-content {
-  padding: 1rem;
-  background: #f9f9f9; 
+  --background: none; /* Deshabilita el fondo por defecto */
+  background: url('../../../assets/images/trainings.jpg') no-repeat center center / cover;
+  /* Otras propiedades, si deseas */
+  position: relative;
+}
+
+
+ion-content::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.5); /* Semitransparente */
+  pointer-events: none; /* Permite interacción con el contenido */
 }
 
 .trainings-container {

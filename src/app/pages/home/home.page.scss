@@ -1,3 +1,20 @@
+ion-content {
+  --background: none; /* Deshabilita el fondo por defecto */
+  background: url('../../../assets/images/trainings.jpg') no-repeat center center / cover;
+  /* Otras propiedades, si deseas */
+  position: relative;
+}
+
+
+ion-content::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.5); /* Semitransparente */
+  pointer-events: none; /* Permite interacción con el contenido */
+}
+
+
 .trainings-container {
   display: flex;
   flex-wrap: wrap;
