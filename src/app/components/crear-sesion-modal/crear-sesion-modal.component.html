@@ -11,19 +11,16 @@
 
 <ion-content>
   <form [formGroup]="sesionForm" (ngSubmit)="crearSesion()">
-    <!-- Nombre -->
     <ion-item>
       <ion-label position="stacked">Nombre</ion-label>
       <ion-input formControlName="nombre" placeholder="Nombre de la sesión"></ion-input>
     </ion-item>
 
-    <!-- Estado -->
     <ion-item>
       <ion-label>Estado</ion-label>
       <ion-toggle formControlName="estado"></ion-toggle>
     </ion-item>
 
-    <!-- Entrenador -->
     <ion-item>
       <ion-label position="stacked">Entrenador</ion-label>
       <ion-select formControlName="entrenador" placeholder="Seleccionar entrenador">
@@ -33,7 +30,6 @@
       </ion-select>
     </ion-item>
 
-    <!-- Entrenamiento -->
     <ion-item>
       <ion-label position="stacked">Entrenamiento</ion-label>
       <ion-select formControlName="entrenamiento" placeholder="Seleccionar entrenamiento">
@@ -43,7 +39,6 @@
       </ion-select>
     </ion-item>
 
-    <!-- Jugadores -->
     <ion-item>
       <ion-label position="stacked">Jugadores</ion-label>
       <ion-select formControlName="jugadores" multiple="true" placeholder="Seleccionar jugadores">
@@ -53,7 +48,27 @@
       </ion-select>
     </ion-item>
 
-    <!-- Botón para enviar -->
+    <ion-item>
+      <ion-label position="stacked">Imagen de la Sesión</ion-label>
+      <div
+        class="drag-drop-area"
+        (dragover)="onDragOver($event)"
+        (dragleave)="onDragLeave($event)"
+        (drop)="onDrop($event)"
+      >
+        <p *ngIf="!imagenSesion">Arrastra y suelta una imagen aquí o haz clic para seleccionar</p>
+        <img *ngIf="imagenSesion" [src]="imagenSesion" alt="Vista previa de la imagen" />
+      </div>
+      <input
+        type="file"
+        accept="image/*"
+        hidden
+        #fileInput
+        (change)="onFileSelected($event)"
+      />
+      <ion-button expand="block" (click)="fileInput.click()">Seleccionar imagen</ion-button>
+    </ion-item>
+
     <ion-button expand="block" type="submit" [disabled]="sesionForm.invalid">
       Crear Sesión
     </ion-button>

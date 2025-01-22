@@ -7,13 +7,15 @@ import { SesionesService } from 'src/app/services/sesiones/sesiones.service';
   selector: 'app-crear-sesion-modal',
   templateUrl: './crear-sesion-modal.component.html',
   styleUrls: ['./crear-sesion-modal.component.scss'],
-  standalone:false
+  standalone: false,
 })
 export class CrearSesionModalComponent implements OnInit {
   sesionForm: FormGroup;
   entrenadores: any[] = [];
   entrenamientos: any[] = [];
   jugadores: any[] = [];
+  imagenSesion: string | ArrayBuffer | null = null; // Vista previa de la imagen
+  archivoSesion: File | null = null; // Archivo seleccionado
 
   constructor(
     private fb: FormBuilder,
@@ -34,6 +36,7 @@ export class CrearSesionModalComponent implements OnInit {
     this.cargarEntrenamientos();
     this.cargarJugadores();
   }
+
   cargarEntrenadores() {
     this.sesionesService.getEntrenadores().subscribe({
       next: (response) => {
@@ -47,7 +50,7 @@ export class CrearSesionModalComponent implements OnInit {
       },
     });
   }
-  
+
   cargarJugadores() {
     this.sesionesService.getJugadores().subscribe({
       next: (response) => {
@@ -61,7 +64,7 @@ export class CrearSesionModalComponent implements OnInit {
       },
     });
   }
-  
+
   cargarEntrenamientos() {
     this.sesionesService.getEntrenamientos().subscribe({
       next: (response) => {
@@ -76,23 +79,74 @@ export class CrearSesionModalComponent implements OnInit {
     });
   }
 
+  // Métodos de Drag and Drop
+  onDragOver(event: DragEvent) {
+    event.preventDefault();
+    const area = event.currentTarget as HTMLElement;
+    area.classList.add('dragover');
+  }
+
+  onDragLeave(event: DragEvent) {
+    const area = event.currentTarget as HTMLElement;
+    area.classList.remove('dragover');
+  }
+
+  onDrop(event: DragEvent) {
+    event.preventDefault();
+    const area = event.currentTarget as HTMLElement;
+    area.classList.remove('dragover');
+
+    if (event.dataTransfer?.files && event.dataTransfer.files.length > 0) {
+      this.handleFile(event.dataTransfer.files[0]);
+    }
+  }
+
+  onFileSelected(event: Event) {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files.length > 0) {
+      this.handleFile(input.files[0]);
+    }
+  }
+
+  handleFile(file: File) {
+    if (file.type.startsWith('image/')) {
+      this.archivoSesion = file;
+
+      // Generar vista previa
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.imagenSesion = reader.result;
+      };
+      reader.readAsDataURL(file);
+    } else {
+      console.error('El archivo seleccionado no es una imagen válida.');
+    }
+  }
+
   crearSesion() {
-    if (this.sesionForm.valid) {
+    if (this.sesionForm.valid && this.archivoSesion) {
       const sesionData = this.sesionForm.value;
-      this.sesionesService.crearSesion(sesionData).subscribe({
+
+      // Crear FormData para subir la imagen y los datos
+      const formData = new FormData();
+      formData.append('data', JSON.stringify(sesionData));
+      formData.append('files.sesionpicture', this.archivoSesion);
+
+      this.sesionesService.crearSesion(formData).subscribe({
         next: (response) => {
-          console.log('Sesión creada:', response);
-          this.cerrarModal(true); // Cerramos el modal y enviamos un indicador al HomePage
+          console.log('Sesión creada con éxito:', response);
+          this.cerrarModal(true);
         },
         error: (err) => {
           console.error('Error al crear sesión:', err);
         },
       });
+    } else {
+      console.error('El formulario no es válido o no se ha seleccionado una imagen.');
     }
   }
-  
+
   cerrarModal(reload: boolean = false) {
     this.modalCtrl.dismiss({ reload });
   }
-  
 }
