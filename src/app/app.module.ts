@@ -15,6 +15,8 @@ import { ShowPasswordPipe } from './pipes/show-password.pipe';
 import { RegisterModalComponent } from './components/register-modal/register-modal.component';
 import { NavigationBarComponent } from './components/navigation-bar/navigation-bar.component';
 import { CrearEntrenamientoModalComponent } from './components/crear-entrenamiento-modal/crear-entrenamiento-modal.component';
+import { CrearSesionModalComponent } from './components/crear-sesion-modal/crear-sesion-modal.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,7 +24,8 @@ import { CrearEntrenamientoModalComponent } from './components/crear-entrenamien
     RegisterModalComponent,
     ShowPasswordPipe,
     NavigationBarComponent,
-    CrearEntrenamientoModalComponent],
+    CrearEntrenamientoModalComponent,
+    CrearSesionModalComponent],
   imports: [
     BrowserModule, 
     IonicModule.forRoot(), 

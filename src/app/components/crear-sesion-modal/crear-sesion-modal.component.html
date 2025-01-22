@@ -1,0 +1,61 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Crear Sesión</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="cerrarModal()">
+        <ion-icon name="close-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="sesionForm" (ngSubmit)="crearSesion()">
+    <!-- Nombre -->
+    <ion-item>
+      <ion-label position="stacked">Nombre</ion-label>
+      <ion-input formControlName="nombre" placeholder="Nombre de la sesión"></ion-input>
+    </ion-item>
+
+    <!-- Estado -->
+    <ion-item>
+      <ion-label>Estado</ion-label>
+      <ion-toggle formControlName="estado"></ion-toggle>
+    </ion-item>
+
+    <!-- Entrenador -->
+    <ion-item>
+      <ion-label position="stacked">Entrenador</ion-label>
+      <ion-select formControlName="entrenador" placeholder="Seleccionar entrenador">
+        <ion-select-option *ngFor="let entrenador of entrenadores" [value]="entrenador.id">
+          {{ entrenador.nombre }}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <!-- Entrenamiento -->
+    <ion-item>
+      <ion-label position="stacked">Entrenamiento</ion-label>
+      <ion-select formControlName="entrenamiento" placeholder="Seleccionar entrenamiento">
+        <ion-select-option *ngFor="let entrenamiento of entrenamientos" [value]="entrenamiento.id">
+          {{ entrenamiento.nombre }}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <!-- Jugadores -->
+    <ion-item>
+      <ion-label position="stacked">Jugadores</ion-label>
+      <ion-select formControlName="jugadores" multiple="true" placeholder="Seleccionar jugadores">
+        <ion-select-option *ngFor="let jugador of jugadores" [value]="jugador.id">
+          {{ jugador.nombre }}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <!-- Botón para enviar -->
+    <ion-button expand="block" type="submit" [disabled]="sesionForm.invalid">
+      Crear Sesión
+    </ion-button>
+  </form>
+</ion-content>
