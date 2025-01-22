@@ -17,14 +17,12 @@
       <ion-input formControlName="nombre" placeholder="Nombre de la sesión"></ion-input>
     </ion-item>
 
-    <!-- Estado -->
     <ion-item>
       <ion-icon name="toggle-outline" slot="start"></ion-icon>
       <ion-label>Estado</ion-label>
       <ion-toggle formControlName="estado"></ion-toggle>
     </ion-item>
 
-    <!-- Entrenador -->
     <ion-item>
       <ion-icon name="people-outline" slot="start"></ion-icon>
       <ion-label>Entrenador</ion-label>
@@ -35,7 +33,6 @@
       </ion-select>
     </ion-item>
 
-    <!-- Entrenamiento -->
     <ion-item>
       <ion-icon name="barbell-outline" slot="start"></ion-icon>
       <ion-label>Entrenamiento</ion-label>
@@ -46,7 +43,6 @@
       </ion-select>
     </ion-item>
 
-    <!-- Jugadores -->
     <ion-item>
       <ion-icon name="person-add-outline" slot="start"></ion-icon>
       <ion-label>Jugadores</ion-label>
@@ -57,13 +53,11 @@
       </ion-select>
     </ion-item>
 
-    <!-- Botón Crear Sesión -->
     <ion-button expand="block" type="submit" [disabled]="sesionForm.invalid">
       Crear Sesión
     </ion-button>
   </form>
 
-  <!-- Drag and Drop para la imagen -->
   <div
     class="drag-and-drop"
     (dragover)="onDragOver($event)"
