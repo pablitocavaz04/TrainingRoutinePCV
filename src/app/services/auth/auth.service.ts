@@ -41,4 +41,5 @@ export class AuthService {
       throw new Error('No se encontró el token en localStorage.');
     }
   }
+  
 }

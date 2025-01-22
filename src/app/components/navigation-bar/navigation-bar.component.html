@@ -7,8 +7,10 @@
       <li><a routerLink="/entrenamientos" routerLinkActive="active">Entrenamientos</a></li>
       <li><a routerLink="/jugadores" routerLinkActive="active">Jugadores</a></li>
       <li><a routerLink="/entrenadores" routerLinkActive="active">Entrenadores</a></li>
-      <li><a routerLink="/perfil" routerLinkActive="active">Perfil</a></li>
     </ul>
+    <div class="profile-picture" *ngIf="imagenPerfil">
+      <img [src]="imagenPerfil" alt="Imagen de perfil" />
+    </div>
     <button class="burger" (click)="toggleMenu()">
       <span></span>
       <span></span>
