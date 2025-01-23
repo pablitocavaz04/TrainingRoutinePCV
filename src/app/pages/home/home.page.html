@@ -1,32 +1,31 @@
 <ion-content>
     <div class="trainings-container">
       <ion-card *ngFor="let sesion of sesiones">
-        <img [src]="sesion.imagen" alt="Imagen de sesión" />
+        <img [src]="sesion.imagen" alt="Imagen de la sesión" />
+      
         <ion-card-header>
           <ion-card-title>{{ sesion.nombre }}</ion-card-title>
-          <ion-card-subtitle>{{ sesion.fecha }}</ion-card-subtitle>
         </ion-card-header>
+      
         <ion-card-content>
-          <p>{{ sesion.descripcion }}</p>
+          <ion-item>
+            <ion-label>Estado</ion-label>
+            <ion-toggle
+              [checked]="sesion.estado"
+              (ionChange)="cambiarEstadoSesion(sesion, $event)"
+            ></ion-toggle>
+          </ion-item>
+          <div class="card-actions">
+            <ion-button fill="solid" color="secondary" (click)="editarSesion(sesion)">
+              Editar
+            </ion-button>
+            <ion-button fill="solid" color="danger" (click)="eliminarSesion(sesion)">
+              Eliminar
+            </ion-button>
+          </div>
         </ion-card-content>
-        <ion-item>
-          <ion-label>Estado</ion-label>
-          <ion-toggle [(ngModel)]="sesion.estado" disabled></ion-toggle>
-        </ion-item>
-        <div class="card-actions">
-          <!-- Botón de editar -->
-          <ion-button fill="solid" color="secondary" (click)="editarSesion(sesion)">
-            <ion-icon name="create-outline" slot="start"></ion-icon>
-            Editar
-          </ion-button>
-  
-          <!-- Botón de eliminar -->
-          <ion-button fill="solid" color="danger" (click)="eliminarSesion(sesion)">
-            <ion-icon name="trash-outline" slot="start"></ion-icon>
-            Eliminar
-          </ion-button>
-        </div>
       </ion-card>
+      
     </div>
     <ion-fab vertical="bottom" horizontal="start" slot="fixed">
       <ion-fab-button color="secondary" (click)="abrirModalCrearSesion()">

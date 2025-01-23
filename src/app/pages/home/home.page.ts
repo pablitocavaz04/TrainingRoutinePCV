@@ -61,4 +61,23 @@ export class HomePage implements OnInit {
   eliminarSesion(sesion: any) {
     console.log('Eliminar sesión:', sesion);
   }
+
+  cambiarEstadoSesion(sesion: any, event: any) {
+    const nuevoEstado = event.detail.checked; // Obtiene el nuevo estado del switch
+  
+    this.sesionesService.actualizarSesion(sesion.id, { estado: nuevoEstado }).subscribe({
+      next: (response) => {
+        console.log(`Estado de la sesión ${sesion.nombre} actualizado correctamente.`);
+        // Actualizamos el estado localmente si es necesario
+        sesion.estado = nuevoEstado;
+      },
+      error: (err) => {
+        console.error('Error al actualizar el estado de la sesión:', err);
+        // Opcional: revertir el estado del toggle en caso de error
+        sesion.estado = !nuevoEstado;
+      },
+    });
+  }
+  
+  
 }
