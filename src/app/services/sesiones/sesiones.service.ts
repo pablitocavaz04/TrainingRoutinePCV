@@ -82,4 +82,18 @@ export class SesionesService {
     return this.http.put(`${this.apiUrl}/sesiones/${id}`, { data }, { headers });
   }
   
+  // Obtener una sesión específica con todos los datos relacionados
+getSesion(id: number): Observable<any> {
+  const token = localStorage.getItem('authToken');
+  if (!token) {
+    throw new Error('No se encontró el token en localStorage.');
+  }
+
+  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  return this.http.get<any>(
+    `${this.apiUrl}/sesiones/${id}?populate=entrenador.user,entrenamiento,jugadores.user,sesionpicture`,
+    { headers }
+  ).pipe(map((response) => response.data)); // Retornar solo los datos
+}
+
 }

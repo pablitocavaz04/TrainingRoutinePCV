@@ -54,9 +54,34 @@ export class HomePage implements OnInit {
   }
   
 
-  editarSesion(sesion: any) {
-    console.log('Editar sesión:', sesion);
+  async editarSesion(sesion: any) {
+    console.log('Obteniendo datos completos de la sesión:', sesion.id);
+  
+    this.sesionesService.getSesion(sesion.id).subscribe({
+      next: async (sesionCompleta) => {
+        console.log('Datos completos de la sesión:', sesionCompleta);
+  
+        // Abrir el modal con los datos completos
+        const modal = await this.modalCtrl.create({
+          component: CrearSesionModalComponent,
+          componentProps: { sesion: sesionCompleta }, // Pasar la sesión completa
+          cssClass: 'custom-modal-large',
+        });
+  
+        await modal.present();
+  
+        const { data } = await modal.onWillDismiss();
+        if (data?.reload) {
+          this.cargarSesiones(); // Recargar las sesiones si se editó algo
+        }
+      },
+      error: (err) => {
+        console.error('Error al obtener los datos completos de la sesión:', err);
+      },
+    });
   }
+  
+  
 
   eliminarSesion(sesion: any) {
     console.log('Eliminar sesión:', sesion);

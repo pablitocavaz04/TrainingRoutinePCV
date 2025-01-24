@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
 import { SesionesService } from 'src/app/services/sesiones/sesiones.service';
@@ -10,11 +10,12 @@ import { SesionesService } from 'src/app/services/sesiones/sesiones.service';
   standalone: false,
 })
 export class CrearSesionModalComponent implements OnInit {
+  @Input() sesion: any;
   sesionForm: FormGroup;
   entrenadores: any[] = [];
   entrenamientos: any[] = [];
   jugadores: any[] = [];
-  imagenSesion: string | ArrayBuffer | null = null; // Vista previa de la imagen
+  imagenSesion: string | null = null; // Vista previa de la imagen
   archivoSesion: File | null = null; // Archivo seleccionado
 
   constructor(
@@ -35,6 +36,11 @@ export class CrearSesionModalComponent implements OnInit {
     this.cargarEntrenadores();
     this.cargarEntrenamientos();
     this.cargarJugadores();
+
+    if (this.sesion) {
+      console.log('Sesion recibida para editar:', this.sesion);
+      this.cargarDatosSesion();
+    }
   }
 
   cargarEntrenadores() {
@@ -79,6 +85,24 @@ export class CrearSesionModalComponent implements OnInit {
     });
   }
 
+  cargarDatosSesion() {
+    // Prellenar el formulario con los datos de la sesión
+    this.sesionForm.patchValue({
+      nombre: this.sesion.attributes.nombre,
+      estado: this.sesion.attributes.estado,
+      entrenador: this.sesion.attributes.entrenador?.data?.id || null,
+      entrenamiento: this.sesion.attributes.entrenamiento?.data?.id || null,
+      jugadores: this.sesion.attributes.jugadores?.data?.map((j: any) => j.id) || [],
+    });
+
+    // Cargar la imagen de la sesión
+    if (this.sesion.attributes.sesionpicture?.data?.attributes?.url) {
+      this.imagenSesion = this.sesion.attributes.sesionpicture.data.attributes.url;
+    }
+
+    console.log('Formulario prellenado con los datos de la sesión:', this.sesionForm.value);
+  }
+
   // Métodos de Drag and Drop
   onDragOver(event: DragEvent) {
     event.preventDefault();
@@ -115,7 +139,7 @@ export class CrearSesionModalComponent implements OnInit {
       // Generar vista previa
       const reader = new FileReader();
       reader.onload = () => {
-        this.imagenSesion = reader.result;
+        this.imagenSesion = reader.result as string;
       };
       reader.readAsDataURL(file);
     } else {
@@ -123,6 +147,11 @@ export class CrearSesionModalComponent implements OnInit {
     }
   }
 
+  cerrarModal(reload: boolean = false) {
+    this.modalCtrl.dismiss({ reload });
+  }
+
+  
   crearSesion() {
     if (this.sesionForm.valid && this.archivoSesion) {
       const sesionData = this.sesionForm.value;
@@ -146,7 +175,4 @@ export class CrearSesionModalComponent implements OnInit {
     }
   }
 
-  cerrarModal(reload: boolean = false) {
-    this.modalCtrl.dismiss({ reload });
-  }
 }
