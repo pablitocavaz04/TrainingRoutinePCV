@@ -23,7 +23,7 @@
     transition: all 0.3s ease; /* Animación suave al interactuar */
 
     &:hover {
-      color: var(--ion-color-secondary); /* Color secundario al hover */
+      color: var(--ion-color-primary); /* Color secundario al hover */
     }
 
     @media (max-width: 768px) {
