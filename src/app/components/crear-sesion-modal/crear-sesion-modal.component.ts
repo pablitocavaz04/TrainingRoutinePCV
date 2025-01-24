@@ -86,7 +86,6 @@ export class CrearSesionModalComponent implements OnInit {
   }
 
   cargarDatosSesion() {
-    // Prellenar el formulario con los datos de la sesión
     this.sesionForm.patchValue({
       nombre: this.sesion.attributes.nombre,
       estado: this.sesion.attributes.estado,
@@ -95,31 +94,85 @@ export class CrearSesionModalComponent implements OnInit {
       jugadores: this.sesion.attributes.jugadores?.data?.map((j: any) => j.id) || [],
     });
 
-    // Cargar la imagen de la sesión
     if (this.sesion.attributes.sesionpicture?.data?.attributes?.url) {
       this.imagenSesion = this.sesion.attributes.sesionpicture.data.attributes.url;
     }
-
-    console.log('Formulario prellenado con los datos de la sesión:', this.sesionForm.value);
   }
 
-  // Métodos de Drag and Drop
+  guardarSesion(sesionData: any, imagenId?: number) {
+    if (imagenId) {
+      sesionData.sesionpicture = imagenId;
+    }
+
+    if (this.sesion) {
+      // Actualizar sesión
+      this.sesionesService.actualizarSesion(this.sesion.id, sesionData).subscribe({
+        next: (response) => {
+          console.log('Sesión actualizada:', response);
+          this.cerrarModal(true);
+        },
+        error: (err) => {
+          console.error('Error al actualizar la sesión:', err);
+        },
+      });
+    } else {
+      // Crear sesión
+      const formData = new FormData();
+      formData.append('data', JSON.stringify(sesionData));
+      this.sesionesService.crearSesion(formData).subscribe({
+        next: (response) => {
+          console.log('Sesión creada:', response);
+          this.cerrarModal(true);
+        },
+        error: (err) => {
+          console.error('Error al crear la sesión:', err);
+        },
+      });
+    }
+  }
+
+  crearSesion() {
+    if (this.archivoSesion) {
+      this.sesionesService.subirImagen(this.archivoSesion).subscribe({
+        next: (response) => {
+          const imagenId = response[0]?.id;
+          this.guardarSesion(this.sesionForm.value, imagenId);
+        },
+        error: (err) => {
+          console.error('Error al subir la imagen:', err);
+        },
+      });
+    } else {
+      this.guardarSesion(this.sesionForm.value);
+    }
+  }
+
+  actualizarSesion() {
+    if (this.archivoSesion) {
+      this.sesionesService.subirImagen(this.archivoSesion).subscribe({
+        next: (response) => {
+          const imagenId = response[0]?.id;
+          this.guardarSesion(this.sesionForm.value, imagenId);
+        },
+        error: (err) => {
+          console.error('Error al subir la imagen:', err);
+        },
+      });
+    } else {
+      this.guardarSesion(this.sesionForm.value);
+    }
+  }
+
   onDragOver(event: DragEvent) {
     event.preventDefault();
-    const area = event.currentTarget as HTMLElement;
-    area.classList.add('dragover');
   }
 
   onDragLeave(event: DragEvent) {
-    const area = event.currentTarget as HTMLElement;
-    area.classList.remove('dragover');
+    event.preventDefault();
   }
 
   onDrop(event: DragEvent) {
     event.preventDefault();
-    const area = event.currentTarget as HTMLElement;
-    area.classList.remove('dragover');
-
     if (event.dataTransfer?.files && event.dataTransfer.files.length > 0) {
       this.handleFile(event.dataTransfer.files[0]);
     }
@@ -135,8 +188,6 @@ export class CrearSesionModalComponent implements OnInit {
   handleFile(file: File) {
     if (file.type.startsWith('image/')) {
       this.archivoSesion = file;
-
-      // Generar vista previa
       const reader = new FileReader();
       reader.onload = () => {
         this.imagenSesion = reader.result as string;
@@ -150,29 +201,4 @@ export class CrearSesionModalComponent implements OnInit {
   cerrarModal(reload: boolean = false) {
     this.modalCtrl.dismiss({ reload });
   }
-
-  
-  crearSesion() {
-    if (this.sesionForm.valid && this.archivoSesion) {
-      const sesionData = this.sesionForm.value;
-
-      // Crear FormData para subir la imagen y los datos
-      const formData = new FormData();
-      formData.append('data', JSON.stringify(sesionData));
-      formData.append('files.sesionpicture', this.archivoSesion);
-
-      this.sesionesService.crearSesion(formData).subscribe({
-        next: (response) => {
-          console.log('Sesión creada con éxito:', response);
-          this.cerrarModal(true);
-        },
-        error: (err) => {
-          console.error('Error al crear sesión:', err);
-        },
-      });
-    } else {
-      console.error('El formulario no es válido o no se ha seleccionado una imagen.');
-    }
-  }
-
 }

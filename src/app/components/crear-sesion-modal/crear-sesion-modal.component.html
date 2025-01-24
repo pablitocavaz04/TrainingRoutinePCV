@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar color="secondary">
-    <ion-title>Crear Sesión</ion-title>
+    <ion-title>{{ sesion ? 'Editar Sesión' : 'Crear Sesión' }}</ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="cerrarModal()">
         <ion-icon name="close-outline"></ion-icon>
@@ -10,7 +10,7 @@
 </ion-header>
 
 <ion-content class="create-modal-content">
-  <form [formGroup]="sesionForm" (ngSubmit)="crearSesion()">
+  <form [formGroup]="sesionForm" (ngSubmit)="sesion ? actualizarSesion() : crearSesion()">
     <ion-item>
       <ion-icon name="clipboard-outline" slot="start"></ion-icon>
       <ion-input formControlName="nombre" placeholder="Nombre de la sesión"></ion-input>
@@ -53,7 +53,7 @@
     </ion-item>
 
     <ion-button expand="block" type="submit" [disabled]="sesionForm.invalid">
-      Crear Sesión
+      {{ sesion ? 'Actualizar Sesión' : 'Crear Sesión' }}
     </ion-button>
   </form>
 

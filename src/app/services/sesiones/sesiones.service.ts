@@ -11,7 +11,6 @@ export class SesionesService {
 
   constructor(private http: HttpClient) {}
 
-  // Obtener todas las sesiones con imagen incluida
   getSesiones(): Observable<any[]> {
     const token = localStorage.getItem('authToken');
     if (!token) {
@@ -20,10 +19,9 @@ export class SesionesService {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http
       .get<any>(`${this.apiUrl}/sesiones?populate=sesionpicture`, { headers })
-      .pipe(map((response) => response.data)); // Retornar solo los datos
+      .pipe(map((response) => response.data));
   }
 
-  // Obtener entrenadores
   getEntrenadores(): Observable<any> {
     const token = localStorage.getItem('authToken');
     if (!token) {
@@ -37,7 +35,6 @@ export class SesionesService {
     );
   }
 
-  // Obtener jugadores
   getJugadores(): Observable<any> {
     const token = localStorage.getItem('authToken');
     if (!token) {
@@ -51,7 +48,6 @@ export class SesionesService {
     );
   }
 
-  // Obtener entrenamientos
   getEntrenamientos(): Observable<any[]> {
     const token = localStorage.getItem('authToken');
     if (!token) {
@@ -60,10 +56,9 @@ export class SesionesService {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http
       .get<any>(`${this.apiUrl}/entrenamientos`, { headers })
-      .pipe(map((response) => response.data)); // Retornar solo los datos
+      .pipe(map((response) => response.data));
   }
 
-  // Crear sesión con imagen
   crearSesion(sesionData: FormData): Observable<any> {
     const token = localStorage.getItem('authToken');
     if (!token) {
@@ -81,19 +76,33 @@ export class SesionesService {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.put(`${this.apiUrl}/sesiones/${id}`, { data }, { headers });
   }
-  
-  // Obtener una sesión específica con todos los datos relacionados
-getSesion(id: number): Observable<any> {
-  const token = localStorage.getItem('authToken');
-  if (!token) {
-    throw new Error('No se encontró el token en localStorage.');
+
+  getSesion(id: number): Observable<any> {
+    const token = localStorage.getItem('authToken');
+    if (!token) {
+      throw new Error('No se encontró el token en localStorage.');
+    }
+
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http
+      .get<any>(
+        `${this.apiUrl}/sesiones/${id}?populate=entrenador.user,entrenamiento,jugadores.user,sesionpicture`,
+        { headers }
+      )
+      .pipe(map((response) => response.data));
   }
 
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-  return this.http.get<any>(
-    `${this.apiUrl}/sesiones/${id}?populate=entrenador.user,entrenamiento,jugadores.user,sesionpicture`,
-    { headers }
-  ).pipe(map((response) => response.data)); // Retornar solo los datos
-}
-
+  subirImagen(file: File): Observable<any> {
+    const token = localStorage.getItem('authToken');
+    if (!token) {
+      throw new Error('No se encontró el token en localStorage.');
+    }
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    const formData = new FormData();
+    formData.append('files', file);
+  
+    return this.http.post(`${this.apiUrl}/upload`, formData, { headers });
+  }
+  
+  
 }
