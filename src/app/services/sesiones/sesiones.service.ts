@@ -104,5 +104,15 @@ export class SesionesService {
     return this.http.post(`${this.apiUrl}/upload`, formData, { headers });
   }
   
+
+  eliminarSesion(id: number): Observable<any> {
+    const token = localStorage.getItem('authToken');
+    if (!token) {
+      throw new Error('No se encontró el token en localStorage.');
+    }
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.delete(`${this.apiUrl}/sesiones/${id}`, { headers });
+  }
+  
   
 }
