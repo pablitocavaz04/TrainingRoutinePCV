@@ -1,11 +1,9 @@
 /* Contenedor general para las cards */
 .jugadores-container, .entrenadores-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Cards más grandes en escritorio */
-  gap: 20px; /* Más espacio entre las cards */
-  padding: 20px;
-  max-width: 1200px; /* Limitar el ancho máximo en escritorio */
-  margin: 0 auto; /* Centrar el contenedor */
+  grid-template-columns: repeat(2, 1fr); /* Por defecto, 2 columnas para móviles */
+  gap: 16px; /* Separación entre las cards */
+  padding: 16px;
 }
 
 /* Estilo para cada card */
@@ -25,21 +23,54 @@
 /* Imagen dentro de la card */
 ion-img {
   width: 100%;
-  height: 140px; /* Imagen un poco más grande en escritorio */
+  height: 100px; /* Imagen más pequeña en móviles */
   object-fit: cover;
   border-bottom: 4px solid var(--ion-color-primary);
 }
 
 /* Título y subtítulo dentro de la card */
 ion-card-title {
-  font-size: 1rem; /* Texto más legible en escritorio */
+  font-size: 0.875rem; /* Texto compacto en móvil */
   font-weight: bold;
   color: var(--ion-color-primary);
   text-align: center;
 }
 
 ion-card-subtitle {
-  font-size: 0.85rem;
+  font-size: 0.75rem;
   color: #6b7280; /* Gris claro */
   text-align: center;
+}
+
+/* Ajustes para tablets y pantallas más grandes */
+@media (min-width: 768px) {
+  .jugadores-container, .entrenadores-container {
+    grid-template-columns: repeat(3, 1fr); /* 3 columnas en tablets */
+    gap: 20px;
+    padding: 20px;
+  }
+
+  ion-img {
+    height: 120px; /* Imagen un poco más grande */
+  }
+
+  ion-card-title {
+    font-size: 1rem; /* Texto más grande */
+  }
+
+  ion-card-subtitle {
+    font-size: 0.85rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .jugadores-container, .entrenadores-container {
+    grid-template-columns: repeat(4, 1fr); /* 4 columnas en escritorios grandes */
+    max-width: 1200px; /* Limitar ancho en escritorios */
+    margin: 0 auto;
+  }
+
+  ion-img {
+    height: 140px; /* Imagen más prominente */
+  }
 }
