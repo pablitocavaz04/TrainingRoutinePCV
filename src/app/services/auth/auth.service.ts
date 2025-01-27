@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -41,5 +41,22 @@ export class AuthService {
       throw new Error('No se encontró el token en localStorage.');
     }
   }
+
+  isUserActive(): Observable<boolean> {
+    const token = this.getToken();
+    if (!token) {
+      return new Observable((observer) => observer.next(false));
+    }
+  
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get(`${this.apiUrl}/users/me?populate=persona`, { headers }).pipe(
+      map((user: any) => {
+        console.log('Respuesta del backend:', user);
+        // Verificar si el usuario no está bloqueado y tiene un rol válido
+        return user?.blocked === false && user?.persona?.Rol ? true : false;
+      })
+    );
+  }
+  
   
 }
