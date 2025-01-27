@@ -6,5 +6,10 @@
     "SESIONES": "Sessions",
     "TextSesiones": "Manage specific activities created by coaches. Assign trainings and select players easily.",
     "Roles": "User Roles",
-    "TextRoles": "Explore the roles of Manager, Coach, and Player. Discover how each can contribute to the success of your trainings."
+    "TextRoles": "Explore the roles of Manager, Coach, and Player. Discover how each can contribute to the success of your trainings.",
+    "MiGestion": "MyManagement",
+    "NavSesiones": "Sessions",
+    "NavEntrenamientos": "Trainings",
+    "NavJugadores": "Players",
+    "NavEntrenadores": "Coaches"
 }

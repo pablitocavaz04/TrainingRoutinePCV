@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { TranslationService } from 'src/app/services/translate/translate.service';
 
 @Component({
   selector: 'app-navigation-bar',
@@ -12,7 +13,12 @@ export class NavigationBarComponent implements OnInit {
   isScrolled = false;
   imagenPerfil: string | null = null;
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService,
+               private translationService: TranslationService) {}
+
+  changeLanguage(lang: string) {
+    this.translationService.setLanguage(lang);
+  }
 
   ngOnInit(): void {
     this.cargarImagenPerfil();

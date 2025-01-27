@@ -6,5 +6,10 @@
     "SESIONES" : "Sesiones" ,
     "TextSesiones" : "Gestiona las actividades concretas creadas por los entrenadores. Asigna entrenamientos y selecciona jugadores fácilmente.",
     "Roles" : "Roles de Usuarios",
-    "TextRoles" : "Explora los roles de Gestor, Entrenador y Jugador. Descubre cómo cada uno puede contribuir al éxito de tus entrenamientos."
+    "TextRoles" : "Explora los roles de Gestor, Entrenador y Jugador. Descubre cómo cada uno puede contribuir al éxito de tus entrenamientos.",
+    "MiGestion" : "MiGestión",
+    "NavSesiones" : "Sesiones",
+    "NavEntrenamientos" : "Entrenamientos",
+    "NavJugadores" : "Jugadores",
+    "NavEntrenadores" : "Entrenadores"
 }

@@ -1,15 +1,15 @@
 <nav class="navbar">
   <div class="navbar-container">
-    <a class="logo" routerLink="/home">MiGestión</a>
+    <a class="logo" routerLink="/home">{{'MiGestion' | translate}}</a>
     <ul class="nav-links" [class.open]="menuOpen">
       <!-- Imagen de perfil dentro del menú en móviles -->
       <li *ngIf="imagenPerfil" class="profile-picture-mobile">
         <img [src]="imagenPerfil" alt="Imagen de perfil" />
       </li>
-      <li><a routerLink="/home" routerLinkActive="active">Sesiones</a></li>
-      <li><a routerLink="/entrenamientos" routerLinkActive="active">Entrenamientos</a></li>
-      <li><a routerLink="/jugadores" routerLinkActive="active">Jugadores</a></li>
-      <li><a routerLink="/entrenadores" routerLinkActive="active">Entrenadores</a></li>
+      <li><a routerLink="/home" routerLinkActive="active">{{'NavSesiones' | translate}}</a></li>
+      <li><a routerLink="/entrenamientos" routerLinkActive="active">{{'NavEntrenamientos' | translate}}</a></li>
+      <li><a routerLink="/jugadores" routerLinkActive="active">{{'NavJugadores' | translate}}</a></li>
+      <li><a routerLink="/entrenadores" routerLinkActive="active">{{'NavEntrenadores' | translate}}</a></li>
     </ul>
     <!-- Imagen de perfil para escritorio -->
     <div class="profile-picture desktop" *ngIf="imagenPerfil">
