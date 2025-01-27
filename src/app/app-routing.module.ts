@@ -25,7 +25,18 @@ const routes: Routes = [
     path: 'entrenamientos',
     loadChildren: () => import('./pages/entrenamientos/entrenamientos.module').then( m => m.EntrenamientosPageModule),
     canActivate: [AuthGuard],
+  },
+  {
+    path: 'jugadores',
+    loadChildren: () => import('./pages/jugadores/jugadores.module').then( m => m.JugadoresPageModule),
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'entrenadores',
+    loadChildren: () => import('./pages/entrenadores/entrenadores.module').then( m => m.EntrenadoresPageModule),
+    canActivate: [AuthGuard],
   }
+
 
 
 ];

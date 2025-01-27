@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Jugadores</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="jugadores-container">
+    <ion-card *ngFor="let jugador of jugadores" class="jugador-card">
+      <ion-img [src]="jugador.perfil?.formats.thumbnail.url || jugador.perfil?.url" alt="Foto del jugador"></ion-img>
+      <ion-card-header>
+        <ion-card-title>{{ jugador.user?.username }}</ion-card-title>
+        <ion-card-subtitle>{{ jugador.user?.email }}</ion-card-subtitle>
+      </ion-card-header>
+    </ion-card>
+  </div>
+</ion-content>
