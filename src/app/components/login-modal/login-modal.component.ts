@@ -4,6 +4,7 @@ import { ModalController } from '@ionic/angular';
 import { RegisterModalComponent } from '../register-modal/register-modal.component';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { Router } from '@angular/router';
+import { TranslationService } from 'src/app/services/translate/translate.service';
 
 @Component({
   selector: 'app-login-modal',
@@ -19,12 +20,17 @@ export class LoginModalComponent {
     private fb: FormBuilder,
     private modalCtrl: ModalController,
     private authService: AuthService,
-    private router:Router
+    private router:Router,
+    private translationService: TranslationService
   ) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
     });
+  }
+
+  changeLanguage(lang: string) {
+    this.translationService.setLanguage(lang);
   }
 
   togglePasswordVisibility() {

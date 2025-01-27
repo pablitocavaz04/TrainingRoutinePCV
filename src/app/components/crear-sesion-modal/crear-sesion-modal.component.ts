@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
 import { SesionesService } from 'src/app/services/sesiones/sesiones.service';
+import { TranslationService } from 'src/app/services/translate/translate.service';
 
 @Component({
   selector: 'app-crear-sesion-modal',
@@ -21,7 +22,8 @@ export class CrearSesionModalComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private modalCtrl: ModalController,
-    private sesionesService: SesionesService
+    private sesionesService: SesionesService,
+    private translationService: TranslationService
   ) {
     this.sesionForm = this.fb.group({
       nombre: ['', Validators.required],
@@ -30,6 +32,10 @@ export class CrearSesionModalComponent implements OnInit {
       entrenamiento: ['', Validators.required],
       jugadores: [[], Validators.required],
     });
+  }
+  
+  changeLanguage(lang: string) {
+    this.translationService.setLanguage(lang);
   }
 
   ngOnInit() {

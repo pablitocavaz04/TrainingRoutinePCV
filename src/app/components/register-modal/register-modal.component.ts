@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { LoginModalComponent } from '../login-modal/login-modal.component';
+import { TranslationService } from 'src/app/services/translate/translate.service';
 
 @Component({
   selector: 'app-register-modal',
@@ -18,7 +19,8 @@ export class RegisterModalComponent {
   constructor(
     private fb: FormBuilder,
     private modalController: ModalController,
-    private authService: AuthService
+    private authService: AuthService,
+    private translationService: TranslationService
   ) {
     this.registerForm = this.fb.group({
       fullName: ['', Validators.required],
@@ -26,6 +28,10 @@ export class RegisterModalComponent {
       password: ['', [Validators.required, Validators.minLength(6)]],
       repeatPassword: ['', Validators.required],
     }, { validators: this.passwordsMatch });
+  }
+
+  changeLanguage(lang: string) {
+    this.translationService.setLanguage(lang);
   }
 
   passwordsMatch(group: FormGroup) {

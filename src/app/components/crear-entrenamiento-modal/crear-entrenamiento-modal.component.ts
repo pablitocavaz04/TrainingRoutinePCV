@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EntrenamientosService } from 'src/app/services/entrenamientos/entrenamientos.service';
+import { TranslationService } from 'src/app/services/translate/translate.service';
 
 @Component({
   selector: 'app-crear-entrenamiento-modal',
@@ -23,7 +24,8 @@ export class CrearEntrenamientoModalComponent {
   constructor(
     private modalCtrl: ModalController,
     private formBuilder: FormBuilder,
-    private entrenamientosService: EntrenamientosService
+    private entrenamientosService: EntrenamientosService,
+    private translationService: TranslationService
   ) {
     this.entrenamientoForm = this.formBuilder.group({
       nombre: ['', Validators.required],
@@ -32,6 +34,10 @@ export class CrearEntrenamientoModalComponent {
     });
   }
 
+  changeLanguage(lang: string) {
+    this.translationService.setLanguage(lang);
+  }
+  
   ngOnInit() {
     this.tituloModal = this.modoEdicion ? 'Editar Entrenamiento' : 'Crear Entrenamiento';
     this.textoBoton = this.modoEdicion ? 'Actualizar' : 'Crear';

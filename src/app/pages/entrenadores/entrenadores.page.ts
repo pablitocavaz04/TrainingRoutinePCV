@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { JugadorEntrenadorService } from 'src/app/services/Jugador_Entrenador/jugador-entrenador.service';
-
+import { TranslationService } from 'src/app/services/translate/translate.service';
 @Component({
   selector: 'app-entrenadores',
   templateUrl: './entrenadores.page.html',
@@ -10,7 +10,14 @@ import { JugadorEntrenadorService } from 'src/app/services/Jugador_Entrenador/ju
 export class EntrenadoresPage implements OnInit {
   entrenadores: any[] = []; // Lista de entrenadores a mostrar
 
-  constructor(private jugadorEntrenadorService: JugadorEntrenadorService) {}
+  constructor(
+    private jugadorEntrenadorService: JugadorEntrenadorService,
+    private translationService: TranslationService
+  ) {}
+
+  changeLanguage(lang: string) {
+    this.translationService.setLanguage(lang);
+  }
 
   ngOnInit() {
     this.cargarEntrenadores();

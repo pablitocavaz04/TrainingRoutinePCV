@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AlertController, ModalController } from '@ionic/angular';
 import { EntrenamientosService, Entrenamiento } from 'src/app/services/entrenamientos/entrenamientos.service';
 import { CrearEntrenamientoModalComponent } from 'src/app/components/crear-entrenamiento-modal/crear-entrenamiento-modal.component';
+import { TranslationService } from 'src/app/services/translate/translate.service';
 
 @Component({
   selector: 'app-entrenamientos',
@@ -21,9 +22,14 @@ export class EntrenamientosPage implements OnInit {
   constructor(
     private entrenamientosService: EntrenamientosService,
     private modalCtrl: ModalController,
-    private alertController: AlertController
+    private alertController: AlertController,
+    private translationService: TranslationService
   ) {}
 
+  changeLanguage(lang: string) {
+    this.translationService.setLanguage(lang);
+  }
+  
   ngOnInit() {
     this.cargarEntrenamientos();
   }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { JugadorEntrenadorService } from 'src/app/services/Jugador_Entrenador/jugador-entrenador.service';
+import { TranslationService } from 'src/app/services/translate/translate.service';
 
 @Component({
   selector: 'app-jugadores',
@@ -10,7 +11,14 @@ import { JugadorEntrenadorService } from 'src/app/services/Jugador_Entrenador/ju
 export class JugadoresPage implements OnInit {
   jugadores: any[] = []; // Lista de jugadores que se mostrará en la página
 
-  constructor(private jugadorEntrenadorService: JugadorEntrenadorService) {}
+  constructor(
+    private jugadorEntrenadorService: JugadorEntrenadorService,
+    private translationService: TranslationService
+  ) {}
+
+  changeLanguage(lang: string) {
+    this.translationService.setLanguage(lang);
+  }
 
   ngOnInit() {
     this.cargarJugadores();

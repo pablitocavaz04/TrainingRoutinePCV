@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SesionesService } from 'src/app/services/sesiones/sesiones.service';
 import { ModalController, AlertController } from '@ionic/angular';
 import { CrearSesionModalComponent } from 'src/app/components/crear-sesion-modal/crear-sesion-modal.component';
+import { TranslationService } from 'src/app/services/translate/translate.service';
 
 @Component({
   selector: 'app-home',
@@ -15,9 +16,14 @@ export class HomePage implements OnInit {
   constructor(
     private sesionesService: SesionesService,
     private modalCtrl: ModalController,
-    private alertController: AlertController
+    private alertController: AlertController,
+    private translationService: TranslationService
   ) {}
 
+  changeLanguage(lang: string) {
+    this.translationService.setLanguage(lang);
+  }
+  
   ngOnInit() {
     this.cargarSesiones();
   }
