@@ -26,5 +26,34 @@
     "CreateButton": "Crear",
     "InvalidImageError": "El archivo seleccionado no es una imagen válida.",
     "ImageUploadError": "Error al subir la imagen."
-    }
+    },
+    "LoginModal": {
+    "Title": "Iniciar Sesión",
+    "EmailPlaceholder": "Correo Electrónico",
+    "EmailRequired": "El correo es obligatorio.",
+    "EmailInvalid": "El correo no es válido.",
+    "PasswordPlaceholder": "Contraseña",
+    "PasswordRequired": "La contraseña es obligatoria.",
+    "PasswordMinLength": "Mínimo 6 caracteres.",
+    "LoginButton": "Iniciar Sesión",
+    "NoAccount": "¿No tienes cuenta?",
+    "RegisterHere": "Regístrate aquí"
+  },
+  "RegisterModal": {
+    "Title": "Regístrate",
+    "FullNamePlaceholder": "Nombre Completo",
+    "FullNameRequired": "El nombre es obligatorio.",
+    "EmailPlaceholder": "Correo Electrónico",
+    "EmailRequired": "El correo es obligatorio.",
+    "EmailInvalid": "El correo no es válido.",
+    "PasswordPlaceholder": "Contraseña",
+    "PasswordRequired": "La contraseña es obligatoria.",
+    "PasswordMinLength": "Mínimo 6 caracteres.",
+    "RepeatPasswordPlaceholder": "Repetir Contraseña",
+    "RepeatPasswordRequired": "Debe repetir la contraseña.",
+    "PasswordsMustMatch": "Las contraseñas no coinciden.",
+    "RegisterButton": "Registrarse",
+    "AlreadyHaveAccount": "¿Ya tienes cuenta?",
+    "LoginHere": "Inicia sesión aquí"
+  }
 }

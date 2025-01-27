@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar color="secondary">
-    <ion-title>Iniciar Sesión</ion-title>
+    <ion-title>{{ 'LoginModal.Title' | translate }}</ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="closeModal()">
         <ion-icon name="close"></ion-icon>
@@ -14,32 +14,47 @@
     <!-- Correo Electrónico -->
     <ion-item>
       <ion-icon name="mail-outline" slot="start"></ion-icon>
-      <ion-input placeholder="Correo Electrónico" type="email" formControlName="email"></ion-input>
+      <ion-input
+        placeholder="{{ 'LoginModal.EmailPlaceholder' | translate }}"
+        type="email"
+        formControlName="email"
+      ></ion-input>
     </ion-item>
     <div class="error" *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
-      <small *ngIf="loginForm.get('email')?.errors?.['required']">El correo es obligatorio.</small>
-      <small *ngIf="loginForm.get('email')?.errors?.['email']">El correo no es válido.</small>
+      <small *ngIf="loginForm.get('email')?.errors?.['required']">{{ 'LoginModal.EmailRequired' | translate }}</small>
+      <small *ngIf="loginForm.get('email')?.errors?.['email']">{{ 'LoginModal.EmailInvalid' | translate }}</small>
     </div>
 
     <!-- Contraseña -->
     <ion-item>
       <ion-icon name="lock-closed-outline" slot="start"></ion-icon>
-      <ion-input placeholder="Contraseña" [type]="passwordVisible ? 'text' : 'password'" formControlName="password"></ion-input>
-      <ion-icon slot="end" [name]="passwordVisible ? 'eye-off' : 'eye'" (click)="togglePasswordVisibility()"></ion-icon>
+      <ion-input
+        placeholder="{{ 'LoginModal.PasswordPlaceholder' | translate }}"
+        [type]="passwordVisible ? 'text' : 'password'"
+        formControlName="password"
+      ></ion-input>
+      <ion-icon
+        slot="end"
+        [name]="passwordVisible ? 'eye-off' : 'eye'"
+        (click)="togglePasswordVisibility()"
+      ></ion-icon>
     </ion-item>
     <div class="error" *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
-      <small *ngIf="loginForm.get('password')?.errors?.['required']">La contraseña es obligatoria.</small>
-      <small *ngIf="loginForm.get('password')?.errors?.['minlength']">Mínimo 6 caracteres.</small>
+      <small *ngIf="loginForm.get('password')?.errors?.['required']">{{ 'LoginModal.PasswordRequired' | translate }}</small>
+      <small *ngIf="loginForm.get('password')?.errors?.['minlength']">{{ 'LoginModal.PasswordMinLength' | translate }}</small>
     </div>
 
     <!-- Botón de Iniciar Sesión -->
     <ion-button expand="block" type="submit" [disabled]="loginForm.invalid">
-      Iniciar Sesión
+      {{ 'LoginModal.LoginButton' | translate }}
     </ion-button>
   </form>
 
   <!-- Enlace para abrir el modal de registro -->
   <div class="register-link">
-    <p>¿No tienes cuenta? <a (click)="openRegisterModal()" class="register-link-text">Regístrate aquí</a></p>
+    <p>
+      {{ 'LoginModal.NoAccount' | translate }}
+      <a (click)="openRegisterModal()" class="register-link-text">{{ 'LoginModal.RegisterHere' | translate }}</a>
+    </p>
   </div>
 </ion-content>

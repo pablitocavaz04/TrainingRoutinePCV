@@ -2,11 +2,11 @@
     "BotonEs": "Spanish",
     "BotonEn": "English",
     "ENTRENAMIENTO": "Trainings",
-    "TextEntrenamiento": "Discover where and how trainings will take place. Get detailed information about schedules and process descriptions.",
+    "TextEntrenamiento": "Discover where and how the trainings will take place. Get detailed information about schedules and process descriptions.",
     "SESIONES": "Sessions",
-    "TextSesiones": "Manage specific activities created by coaches. Assign trainings and select players easily.",
+    "TextSesiones": "Manage specific activities created by the coaches. Easily assign trainings and select players.",
     "Roles": "User Roles",
-    "TextRoles": "Explore the roles of Manager, Coach, and Player. Discover how each can contribute to the success of your trainings.",
+    "TextRoles": "Explore the roles of Manager, Coach, and Player. Discover how each one can contribute to the success of your trainings.",
     "MiGestion": "MyManagement",
     "NavSesiones": "Sessions",
     "NavEntrenamientos": "Trainings",
@@ -20,11 +20,41 @@
     "FormEntrena3Valid": "The date is required.",
     "DragDrop": "Drag and drop an image here, or click to select one",
     "Modal": {
-        "EditTitle": "Edit Training",
-        "CreateTitle": "Create Training",
-        "UpdateButton": "Update",
-        "CreateButton": "Create",
-        "InvalidImageError": "The selected file is not a valid image.",
-        "ImageUploadError": "Error uploading the image."
+      "EditTitle": "Edit Training",
+      "CreateTitle": "Create Training",
+      "UpdateButton": "Update",
+      "CreateButton": "Create",
+      "InvalidImageError": "The selected file is not a valid image.",
+      "ImageUploadError": "Error uploading the image."
+    },
+    "LoginModal": {
+      "Title": "Login",
+      "EmailPlaceholder": "Email Address",
+      "EmailRequired": "Email is required.",
+      "EmailInvalid": "Email is not valid.",
+      "PasswordPlaceholder": "Password",
+      "PasswordRequired": "Password is required.",
+      "PasswordMinLength": "Minimum 6 characters.",
+      "LoginButton": "Login",
+      "NoAccount": "Don't have an account?",
+      "RegisterHere": "Register here"
+    },
+    "RegisterModal": {
+      "Title": "Register",
+      "FullNamePlaceholder": "Full Name",
+      "FullNameRequired": "Full name is required.",
+      "EmailPlaceholder": "Email Address",
+      "EmailRequired": "Email is required.",
+      "EmailInvalid": "Email is not valid.",
+      "PasswordPlaceholder": "Password",
+      "PasswordRequired": "Password is required.",
+      "PasswordMinLength": "Minimum 6 characters.",
+      "RepeatPasswordPlaceholder": "Repeat Password",
+      "RepeatPasswordRequired": "You must repeat the password.",
+      "PasswordsMustMatch": "Passwords do not match.",
+      "RegisterButton": "Register",
+      "AlreadyHaveAccount": "Already have an account?",
+      "LoginHere": "Login here"
     }
-}
+  }
+  
