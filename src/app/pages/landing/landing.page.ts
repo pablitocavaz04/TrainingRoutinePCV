@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { LoginModalComponent } from 'src/app/components/login-modal/login-modal.component';
+import { TranslationService } from 'src/app/services/translate/translate.service';
 
 @Component({
   selector: 'app-landing',
@@ -10,7 +11,13 @@ import { LoginModalComponent } from 'src/app/components/login-modal/login-modal.
   standalone: false,
 })
 export class LandingPage {
-  constructor(private router: Router, private modalCtrl: ModalController) {}
+  constructor(private router: Router, 
+              private modalCtrl: ModalController,
+              private translationService: TranslationService) {}
+  
+  changeLanguage(lang: string) {
+    this.translationService.setLanguage(lang);
+  }
 
   async openLoginModal() {
     const modal = await this.modalCtrl.create({
