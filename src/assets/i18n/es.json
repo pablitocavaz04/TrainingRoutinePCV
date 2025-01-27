@@ -1,4 +1,10 @@
 {
+    "BotonEs" : "Español",
+    "BotonEn" : "Ingles",
     "ENTRENAMIENTO": "Entrenamientos",
-    "TextEntrenamiento": "Descubre dónde y cómo se realizarán los entrenamientos. Obtén información detallada sobre los horarios y descripciones de los procesos."
+    "TextEntrenamiento": "Descubre dónde y cómo se realizarán los entrenamientos. Obtén información detallada sobre los horarios y descripciones de los procesos.",
+    "SESIONES" : "Sesiones" ,
+    "TextSesiones" : "Gestiona las actividades concretas creadas por los entrenadores. Asigna entrenamientos y selecciona jugadores fácilmente.",
+    "Roles" : "Roles de Usuarios",
+    "TextRoles" : "Explora los roles de Gestor, Entrenador y Jugador. Descubre cómo cada uno puede contribuir al éxito de tus entrenamientos."
 }

@@ -1,4 +1,10 @@
 {
+    "BotonEs": "Spanish",
+    "BotonEn": "English",
     "ENTRENAMIENTO": "Trainings",
-    "TextEntrenamiento": "Find out where and how the training will take place. Get detailed information about schedules and process descriptions."
+    "TextEntrenamiento": "Discover where and how trainings will take place. Get detailed information about schedules and process descriptions.",
+    "SESIONES": "Sessions",
+    "TextSesiones": "Manage specific activities created by coaches. Assign trainings and select players easily.",
+    "Roles": "User Roles",
+    "TextRoles": "Explore the roles of Manager, Coach, and Player. Discover how each can contribute to the success of your trainings."
 }

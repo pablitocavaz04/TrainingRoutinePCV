@@ -1,8 +1,12 @@
 <ion-content class="landing-page">
-  <ion-select (ionChange)="changeLanguage($event.detail.value)">
-    <ion-select-option value="en">English</ion-select-option>
-    <ion-select-option value="es">Español</ion-select-option>
+  <div class="language-selector">
+    <ion-button size="small" color="primary" shape="round">🌍</ion-button>
+    <ion-select (ionChange)="changeLanguage($event.detail.value)">
+    <ion-select-option value="en">{{ 'BotonEn' | translate }}</ion-select-option>
+    <ion-select-option value="es">{{ 'BotonEs' | translate }}</ion-select-option>
   </ion-select>
+  </div>
+  
   
 
   <div class="columns">
@@ -17,16 +21,17 @@
     <!-- Sesiones -->
     <div class="column" (click)="navigateToNextPage()">
       <div class="column-content fancy-hover" style="background-image: url('assets/images/sessions.jpg')">
-        <h2>Sesiones</h2>
-        <p>Gestiona las actividades concretas creadas por los entrenadores. Asigna entrenamientos y selecciona jugadores fácilmente.</p>
+        <h2>{{ 'SESIONES' | translate }}</h2>
+        <p>{{ 'TextSesiones' | translate}}</p>
+        
       </div>
     </div>
 
     <!-- Roles de Usuarios -->
     <div class="column" (click)="navigateToNextPage()">
       <div class="column-content fancy-hover" style="background-image: url('assets/images/roles.jpg')">
-        <h2>Roles de Usuarios</h2>
-        <p>Explora los roles de Gestor, Entrenador y Jugador. Descubre cómo cada uno puede contribuir al éxito de tus entrenamientos.</p>
+        <h2>{{ 'Roles' | translate }}</h2>
+        <p>{{ 'TextRoles' | translate}}</p>
       </div>
     </div>
   </div>
