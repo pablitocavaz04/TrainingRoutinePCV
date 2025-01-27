@@ -11,5 +11,20 @@
     "NavSesiones": "Sessions",
     "NavEntrenamientos": "Trainings",
     "NavJugadores": "Players",
-    "NavEntrenadores": "Coaches"
+    "NavEntrenadores": "Coaches",
+    "FormEntrena1": "Training Name",
+    "FormEntrena1Valid": "The name is required.",
+    "FormEntrena2": "Description",
+    "FormEntrena2Valid": "The description is required.",
+    "FormEntrena3": "Date",
+    "FormEntrena3Valid": "The date is required.",
+    "DragDrop": "Drag and drop an image here, or click to select one",
+    "Modal": {
+        "EditTitle": "Edit Training",
+        "CreateTitle": "Create Training",
+        "UpdateButton": "Update",
+        "CreateButton": "Create",
+        "InvalidImageError": "The selected file is not a valid image.",
+        "ImageUploadError": "Error uploading the image."
+    }
 }

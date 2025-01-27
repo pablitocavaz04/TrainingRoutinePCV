@@ -11,5 +11,20 @@
     "NavSesiones" : "Sesiones",
     "NavEntrenamientos" : "Entrenamientos",
     "NavJugadores" : "Jugadores",
-    "NavEntrenadores" : "Entrenadores"
+    "NavEntrenadores" : "Entrenadores",
+    "FormEntrena1" : "Nombre del Entrenamiento",
+    "FormEntrena1Valid" : "El nombre es obligatorio.",
+    "FormEntrena2" : "Descripción",
+    "FormEntrena2Valid" : "La descripcion es obligatoria.",
+    "FormEntrena3" : "Fecha",
+    "FormEntrena3Valid" : "La fecha es obligatoria",
+    "DragDrop" : "Arrastra y suelta una imagen aquí, o haz clic para seleccionar una",
+    "Modal": {
+    "EditTitle": "Editar Entrenamiento",
+    "CreateTitle": "Crear Entrenamiento",
+    "UpdateButton": "Actualizar",
+    "CreateButton": "Crear",
+    "InvalidImageError": "El archivo seleccionado no es una imagen válida.",
+    "ImageUploadError": "Error al subir la imagen."
+    }
 }

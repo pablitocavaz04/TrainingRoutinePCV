@@ -2,13 +2,13 @@ import { Component, Input } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EntrenamientosService } from 'src/app/services/entrenamientos/entrenamientos.service';
-import { TranslationService } from 'src/app/services/translate/translate.service';
+import { TranslateService } from '@ngx-translate/core'; // Servicio de ngx-translate
 
 @Component({
   selector: 'app-crear-entrenamiento-modal',
   templateUrl: './crear-entrenamiento-modal.component.html',
   styleUrls: ['./crear-entrenamiento-modal.component.scss'],
-  standalone:false
+  standalone: false,
 })
 export class CrearEntrenamientoModalComponent {
   @Input() modoEdicion: boolean = false;
@@ -25,7 +25,7 @@ export class CrearEntrenamientoModalComponent {
     private modalCtrl: ModalController,
     private formBuilder: FormBuilder,
     private entrenamientosService: EntrenamientosService,
-    private translationService: TranslationService
+    private translate: TranslateService // Servicio de ngx-translate
   ) {
     this.entrenamientoForm = this.formBuilder.group({
       nombre: ['', Validators.required],
@@ -34,14 +34,15 @@ export class CrearEntrenamientoModalComponent {
     });
   }
 
-  changeLanguage(lang: string) {
-    this.translationService.setLanguage(lang);
-  }
-  
   ngOnInit() {
-    this.tituloModal = this.modoEdicion ? 'Editar Entrenamiento' : 'Crear Entrenamiento';
-    this.textoBoton = this.modoEdicion ? 'Actualizar' : 'Crear';
+    // Configurar los textos dinámicos con traducción
+    this.tituloModal = this.modoEdicion
+      ? this.translate.instant('Modal.EditTitle') // Clave de traducción
+      : this.translate.instant('Modal.CreateTitle');
 
+    this.textoBoton = this.modoEdicion
+      ? this.translate.instant('Modal.UpdateButton')
+      : this.translate.instant('Modal.CreateButton');
 
     if (this.modoEdicion && this.entrenamientoData) {
       this.entrenamientoForm.patchValue({
@@ -98,7 +99,7 @@ export class CrearEntrenamientoModalComponent {
       reader.readAsDataURL(file);
       this.errorImagen = null;
     } else {
-      this.errorImagen = 'El archivo seleccionado no es una imagen válida.';
+      this.errorImagen = this.translate.instant('Modal.InvalidImageError'); // Usar traducción
     }
   }
 
@@ -115,7 +116,7 @@ export class CrearEntrenamientoModalComponent {
           },
           (error) => {
             console.error('Error al subir la imagen:', error);
-            this.errorImagen = 'Error al subir la imagen.';
+            this.errorImagen = this.translate.instant('Modal.ImageUploadError'); // Usar traducción
           }
         );
       } else {

@@ -13,26 +13,26 @@
   <form [formGroup]="entrenamientoForm" (ngSubmit)="crearEntrenamiento()">
     <ion-item>
       <ion-icon name="clipboard-outline" slot="start"></ion-icon>
-      <ion-input placeholder="Nombre del entrenamiento" formControlName="nombre" required></ion-input>
+      <ion-input placeholder="{{'FormEntrena1' | translate}}" formControlName="nombre" required></ion-input>
     </ion-item>
     <div class="error" *ngIf="entrenamientoForm.get('nombre')?.invalid && entrenamientoForm.get('nombre')?.touched">
-      <small>El nombre es obligatorio.</small>
+      <small>{{'FormEntrena1Valid' | translate}}</small>
     </div>
 
     <ion-item>
       <ion-icon name="document-text-outline" slot="start"></ion-icon>
-      <ion-textarea placeholder="Descripción" formControlName="descripcion" required></ion-textarea>
+      <ion-textarea placeholder="{{'FormEntrena2' | translate}}" formControlName="descripcion" required></ion-textarea>
     </ion-item>
     <div class="error" *ngIf="entrenamientoForm.get('descripcion')?.invalid && entrenamientoForm.get('descripcion')?.touched">
-      <small>La descripción es obligatoria.</small>
+      <small>{{ 'FormEntrena2Valid' | translate}}</small>
     </div>
 
     <ion-item>
       <ion-icon name="calendar-outline" slot="start"></ion-icon>
-      <ion-datetime formControlName="fecha" placeholder="Fecha" displayFormat="YYYY-MM-DD"></ion-datetime>
+      <ion-datetime formControlName="fecha" placeholder="{{'FormEntrena3' | translate}}" displayFormat="YYYY-MM-DD"></ion-datetime>
     </ion-item>
     <div class="error" *ngIf="entrenamientoForm.get('fecha')?.invalid && entrenamientoForm.get('fecha')?.touched">
-      <small>La fecha es obligatoria.</small>
+      <small>{{'FormEntrena3Valid' | translate}}</small>
     </div>
 
     <ion-button expand="block" type="submit" [disabled]="!entrenamientoForm.valid">
@@ -49,7 +49,7 @@ class="drag-and-drop"
 (click)="fileInput.click()"
 >
 <ion-icon name="cloud-upload-outline"></ion-icon>
-<p *ngIf="!imagenSeleccionada">Arrastra y suelta una imagen aquí, o haz clic para seleccionar una</p>
+<p *ngIf="!imagenSeleccionada">{{ 'DragDrop' | translate}}</p>
 <img *ngIf="imagenPreview" [src]="imagenPreview" alt="Vista previa de imagen" />
 <input type="file" hidden (change)="onFileSelected($event)" #fileInput />
 </div>
