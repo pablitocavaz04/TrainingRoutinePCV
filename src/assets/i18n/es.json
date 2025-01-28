@@ -55,5 +55,18 @@
     "RegisterButton": "Registrarse",
     "AlreadyHaveAccount": "¿Ya tienes cuenta?",
     "LoginHere": "Inicia sesión aquí"
-  }
+  },
+  "TrainingsPage": {
+    "Title": "Entrenamientos",
+    "ImageAlt": "Imagen de entrenamiento",
+    "EditButton": "Editar",
+    "DeleteButton": "Eliminar"
+  },
+    "SessionsPage": {
+      "ImageAlt": "Imagen de la sesión",
+      "StatusLabel": "Estado",
+      "EditButton": "Editar",
+      "DeleteButton": "Eliminar"
+    }
+  
 }
