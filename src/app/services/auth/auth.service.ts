@@ -31,6 +31,17 @@ export class AuthService {
     return localStorage.getItem('authToken');
   }
 
+  // Guardar token en el localStorage después del login
+  setToken(token: string): void {
+    localStorage.setItem('authToken', token);
+  }
+
+  // Eliminar el token del localStorage (Cerrar sesión)
+  logout(): void {
+    localStorage.removeItem('authToken'); // Eliminar token del localStorage
+    localStorage.clear(); // Limpiar cualquier otro dato guardado en la sesión
+  }
+
   // Obtener los datos del usuario logueado (incluyendo relación con persona y perfil)
   getUsuarioLogueado(): Observable<any> {
     const token = this.getToken();
@@ -42,21 +53,19 @@ export class AuthService {
     }
   }
 
+  // Verificar si el usuario está activo
   isUserActive(): Observable<boolean> {
     const token = this.getToken();
     if (!token) {
       return new Observable((observer) => observer.next(false));
     }
-  
+
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.get(`${this.apiUrl}/users/me?populate=persona`, { headers }).pipe(
       map((user: any) => {
         console.log('Respuesta del backend:', user);
-        // Verificar si el usuario no está bloqueado y tiene un rol válido
         return user?.blocked === false && user?.persona?.Rol ? true : false;
       })
     );
   }
-  
-  
 }

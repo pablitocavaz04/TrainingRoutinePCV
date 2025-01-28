@@ -1,25 +1,25 @@
 <nav class="navbar">
   <div class="navbar-container">
-    <a class="logo" routerLink="/home">{{'MiGestion' | translate}}</a>
+    <a class="logo" routerLink="/home">{{ 'MiGestion' | translate }}</a>
     <ul class="nav-links" [class.open]="menuOpen">
-      <!-- Imagen de perfil dentro del menú en móviles -->
-      <li *ngIf="imagenPerfil" class="profile-picture-mobile">
-        <img [src]="imagenPerfil" alt="Imagen de perfil" />
-      </li>
-      <li><a routerLink="/home" routerLinkActive="active">{{'NavSesiones' | translate}}</a></li>
-      <li><a routerLink="/entrenamientos" routerLinkActive="active">{{'NavEntrenamientos' | translate}}</a></li>
-      <li><a routerLink="/jugadores" routerLinkActive="active">{{'NavJugadores' | translate}}</a></li>
-      <li><a routerLink="/entrenadores" routerLinkActive="active">{{'NavEntrenadores' | translate}}</a></li>
-      <!-- Selector de idioma dentro del menú -->
-      <li class="language-selector">
-        <div (click)="toggleLanguageMenu()" class="language-button">
+      <li><a routerLink="/home" routerLinkActive="active">{{ 'NavSesiones' | translate }}</a></li>
+      <li><a routerLink="/entrenamientos" routerLinkActive="active">{{ 'NavEntrenamientos' | translate }}</a></li>
+      <li><a routerLink="/jugadores" routerLinkActive="active">{{ 'NavJugadores' | translate }}</a></li>
+      <li><a routerLink="/entrenadores" routerLinkActive="active">{{ 'NavEntrenadores' | translate }}</a></li>
+    </ul>
+
+    <!-- Contenedor para idioma y perfil -->
+    <div class="profile-container">
+      <!-- Selector de idioma -->
+      <div class="language-selector">
+        <div (click)="toggleLanguageMenu($event)" class="language-button">
           <img
             [src]="currentLanguage === 'es' ? '../../../assets/icon/espana.png' : '../../../assets/icon/en.png'"
             alt="language"
             class="language-icon"
           />
         </div>
-        <div class="language-dropdown" *ngIf="isLanguageMenuOpen">
+        <div class="language-dropdown" [class.open]="isLanguageMenuOpen">
           <div class="language-option" (click)="changeLanguage('es')">
             <img src="../../../assets/icon/espana.png" alt="Español" class="language-icon" />
             <span>{{ 'BotonEs' | translate }}</span>
@@ -29,12 +29,26 @@
             <span>{{ 'BotonEn' | translate }}</span>
           </div>
         </div>
-      </li>
-    </ul>
-    <!-- Imagen de perfil para escritorio -->
-    <div class="profile-picture desktop" *ngIf="imagenPerfil">
-      <img [src]="imagenPerfil" alt="Imagen de perfil" />
+      </div>
+
+      <!-- Imagen de perfil con menú desplegable -->
+      <div class="profile-wrapper">
+        <div class="profile-picture" *ngIf="imagenPerfil" (click)="toggleProfileMenu()">
+          <img [src]="imagenPerfil" alt="Imagen de perfil" />
+        </div>
+
+              <!-- Menú desplegable de Mi Perfil -->
+      <div class="profile-menu" [class.open]="isProfileMenuOpen">
+        <div class="profile-info">
+          <img [src]="imagenPerfil" alt="Imagen de perfil" class="profile-menu-img" />
+          <p>{{ usuarioCorreo }}</p>
+        </div>
+        <button class="logout-button" (click)="cerrarSesion()">{{ 'CerrarSesion' | translate }}</button>
+      </div>
+
+      </div>
     </div>
+
     <!-- Botón hamburguesa -->
     <button class="burger" (click)="toggleMenu()">
       <span></span>
