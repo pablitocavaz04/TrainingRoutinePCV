@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
 import { SesionesService } from 'src/app/services/sesiones/sesiones.service';
 import { TranslationService } from 'src/app/services/translate/translate.service';
+import { TranslateService } from '@ngx-translate/core'; // Importar TranslateService
 
 @Component({
   selector: 'app-crear-sesion-modal',
@@ -18,12 +19,16 @@ export class CrearSesionModalComponent implements OnInit {
   jugadores: any[] = [];
   imagenSesion: string | null = null; // Vista previa de la imagen
   archivoSesion: File | null = null; // Archivo seleccionado
+  tituloModal: string = '';
+  textoBoton: string = '';
+
 
   constructor(
     private fb: FormBuilder,
     private modalCtrl: ModalController,
     private sesionesService: SesionesService,
-    private translationService: TranslationService
+    private translationService: TranslationService,
+    private translate: TranslateService
   ) {
     this.sesionForm = this.fb.group({
       nombre: ['', Validators.required],
@@ -33,12 +38,19 @@ export class CrearSesionModalComponent implements OnInit {
       jugadores: [[], Validators.required],
     });
   }
-  
+
   changeLanguage(lang: string) {
     this.translationService.setLanguage(lang);
   }
 
   ngOnInit() {
+    this.tituloModal = this.sesion
+    ? this.translate.instant('SessionsModal.EditTitle')
+    : this.translate.instant('SessionsModal.CreateTitle');
+
+  this.textoBoton = this.sesion
+    ? this.translate.instant('SessionsModal.UpdateButton')
+    : this.translate.instant('SessionsModal.CreateButton');
     this.cargarEntrenadores();
     this.cargarEntrenamientos();
     this.cargarJugadores();

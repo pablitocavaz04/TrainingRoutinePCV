@@ -67,5 +67,20 @@
     "StatusLabel": "Status",
     "EditButton": "Edit",
     "DeleteButton": "Delete"
-  }
+  },
+  "NombreSesion": "Session Name",
+  "Estado": "Status",
+  "Entrenador": "Coach",
+  "SelecEntrenador": "Select a coach",
+  "Entrenamiento": "Training",
+  "SelecEntrenamiento": "Select a training",
+  "Jugadores": "Players",
+  "SelecJugadores": "Select players",
+  "EditSesion": "Edit Session",
+ "SessionsModal": {
+  "EditTitle": "Edit Session",
+  "CreateTitle": "Create Session",
+  "UpdateButton": "Update Session",
+  "CreateButton": "Create Session"
+ }
 }

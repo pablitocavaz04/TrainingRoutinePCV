@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar color="secondary">
-    <ion-title>{{ sesion ? 'Editar Sesión' : 'Crear Sesión' }}</ion-title>
+    <ion-title>{{ tituloModal }}</ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="cerrarModal()">
         <ion-icon name="close-outline"></ion-icon>
@@ -13,19 +13,19 @@
   <form [formGroup]="sesionForm" (ngSubmit)="sesion ? actualizarSesion() : crearSesion()">
     <ion-item>
       <ion-icon name="clipboard-outline" slot="start"></ion-icon>
-      <ion-input formControlName="nombre" placeholder="Nombre de la sesión"></ion-input>
+      <ion-input formControlName="nombre" placeholder="{{'NombreSesion' | translate}}"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-icon name="toggle-outline" slot="start"></ion-icon>
-      <ion-label>Estado</ion-label>
+      <ion-label>{{'Estado' | translate}}</ion-label>
       <ion-toggle formControlName="estado"></ion-toggle>
     </ion-item>
 
     <ion-item>
       <ion-icon name="people-outline" slot="start"></ion-icon>
-      <ion-label>Entrenador</ion-label>
-      <ion-select formControlName="entrenador" placeholder="Seleccionar entrenador">
+      <ion-label>{{'Entrenador'  | translate}}</ion-label>
+      <ion-select formControlName="entrenador" placeholder="{{'SelecEntrenador' | translate}}">
         <ion-select-option *ngFor="let entrenador of entrenadores" [value]="entrenador.id">
           {{ entrenador.nombre }}
         </ion-select-option>
@@ -34,8 +34,8 @@
 
     <ion-item>
       <ion-icon name="barbell-outline" slot="start"></ion-icon>
-      <ion-label>Entrenamiento</ion-label>
-      <ion-select formControlName="entrenamiento" placeholder="Seleccionar entrenamiento">
+      <ion-label>{{'Entrenamiento' | translate}}</ion-label>
+      <ion-select formControlName="entrenamiento" placeholder="{{'SelecEntrenamiento' | translate}}">
         <ion-select-option *ngFor="let entrenamiento of entrenamientos" [value]="entrenamiento.id">
           {{ entrenamiento.nombre }}
         </ion-select-option>
@@ -44,8 +44,8 @@
 
     <ion-item>
       <ion-icon name="person-add-outline" slot="start"></ion-icon>
-      <ion-label>Jugadores</ion-label>
-      <ion-select formControlName="jugadores" multiple="true" placeholder="Seleccionar jugadores">
+      <ion-label>{{'Jugadores' | translate}}</ion-label>
+      <ion-select formControlName="jugadores" multiple="true" placeholder="{{'SelecJugadores' | translate}}">
         <ion-select-option *ngFor="let jugador of jugadores" [value]="jugador.id">
           {{ jugador.nombre }}
         </ion-select-option>
@@ -53,7 +53,7 @@
     </ion-item>
 
     <ion-button expand="block" type="submit" [disabled]="sesionForm.invalid">
-      {{ sesion ? 'Actualizar Sesión' : 'Crear Sesión' }}
+      {{ textoBoton }}
     </ion-button>
   </form>
 
@@ -65,7 +65,7 @@
     (click)="fileInput.click()"
   >
     <ion-icon name="cloud-upload-outline"></ion-icon>
-    <p *ngIf="!imagenSesion">Arrastra y suelta una imagen aquí o haz clic para seleccionar</p>
+    <p *ngIf="!imagenSesion">{{'DragDrop' | translate}}</p>
     <img *ngIf="imagenSesion" [src]="imagenSesion" alt="Vista previa de la imagen" />
     <input
       type="file"
