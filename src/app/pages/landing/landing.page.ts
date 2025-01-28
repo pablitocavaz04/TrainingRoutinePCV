@@ -11,13 +11,22 @@ import { TranslationService } from 'src/app/services/translate/translate.service
   standalone: false,
 })
 export class LandingPage {
+isLanguageMenuOpen: boolean = false;
+currentLanguage: string = 'es'; // Valor inicial según el idioma por defecto
+
   constructor(private router: Router, 
               private modalCtrl: ModalController,
               private translationService: TranslationService) {}
+
+  toggleLanguageMenu() {
+  this.isLanguageMenuOpen = !this.isLanguageMenuOpen;
+}
   
-  changeLanguage(lang: string) {
-    this.translationService.setLanguage(lang);
-  }
+changeLanguage(lang: string) {
+  this.currentLanguage = lang;
+  this.translationService.setLanguage(lang); // Cambiar idioma en el servicio de traducción
+  this.isLanguageMenuOpen = false; // Cerrar el menú
+}
 
   async openLoginModal() {
     const modal = await this.modalCtrl.create({

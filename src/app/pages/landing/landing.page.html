@@ -1,10 +1,19 @@
 <ion-content class="landing-page">
   <div class="language-selector">
-    <ion-button size="small" color="primary" shape="round">🌍</ion-button>
-    <ion-select (ionChange)="changeLanguage($event.detail.value)">
-    <ion-select-option value="en">{{ 'BotonEn' | translate }}</ion-select-option>
-    <ion-select-option value="es">{{ 'BotonEs' | translate }}</ion-select-option>
-  </ion-select>
+    <ion-button (click)="toggleLanguageMenu()" class="language-button">
+      <img [src]="currentLanguage === 'es' ? '../../../assets/icon/espana.png' : '../../../assets/icon/en.png'" alt="language" class="language-icon" />
+    </ion-button>
+  
+    <div class="language-dropdown" *ngIf="isLanguageMenuOpen">
+      <div class="language-option" (click)="changeLanguage('es')">
+        <img src="../../../assets/icon/espana.png" alt="Español" class="language-icon" />
+        <span>{{ 'BotonEs' | translate }}</span>
+      </div>
+      <div class="language-option" (click)="changeLanguage('en')">
+        <img src="../../../assets/icon/en.png" alt="Inglés" class="language-icon" />
+        <span>{{ 'BotonEn' | translate }}</span>
+      </div>
+    </div>
   </div>
   
   
