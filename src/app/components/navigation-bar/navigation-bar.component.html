@@ -10,6 +10,26 @@
       <li><a routerLink="/entrenamientos" routerLinkActive="active">{{'NavEntrenamientos' | translate}}</a></li>
       <li><a routerLink="/jugadores" routerLinkActive="active">{{'NavJugadores' | translate}}</a></li>
       <li><a routerLink="/entrenadores" routerLinkActive="active">{{'NavEntrenadores' | translate}}</a></li>
+      <!-- Selector de idioma dentro del menú -->
+      <li class="language-selector">
+        <div (click)="toggleLanguageMenu()" class="language-button">
+          <img
+            [src]="currentLanguage === 'es' ? '../../../assets/icon/espana.png' : '../../../assets/icon/en.png'"
+            alt="language"
+            class="language-icon"
+          />
+        </div>
+        <div class="language-dropdown" *ngIf="isLanguageMenuOpen">
+          <div class="language-option" (click)="changeLanguage('es')">
+            <img src="../../../assets/icon/espana.png" alt="Español" class="language-icon" />
+            <span>{{ 'BotonEs' | translate }}</span>
+          </div>
+          <div class="language-option" (click)="changeLanguage('en')">
+            <img src="../../../assets/icon/en.png" alt="Inglés" class="language-icon" />
+            <span>{{ 'BotonEn' | translate }}</span>
+          </div>
+        </div>
+      </li>
     </ul>
     <!-- Imagen de perfil para escritorio -->
     <div class="profile-picture desktop" *ngIf="imagenPerfil">
