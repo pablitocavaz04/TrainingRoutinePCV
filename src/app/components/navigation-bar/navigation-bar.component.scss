@@ -52,6 +52,7 @@
       padding: 6px 12px;
     }
 
+    /* 📌 EN MÓVILES: OCULTAR Y MOSTRAR AL ABRIR EL MENÚ */
     @media (max-width: 768px) {
       flex-direction: column;
       position: absolute;
@@ -153,11 +154,11 @@
     display: flex;
     align-items: center;
   }
-  
+
   .profile-menu {
     position: absolute;
-    top: 55px; /* Bajarlo un poco para que no toque la barra */
-    right: 5;
+    top: 55px;
+    right: 0;
     background: white;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
     border-radius: 8px;
@@ -172,13 +173,13 @@
     transform: translateY(-10px);
     transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
   }
-  
+
   .profile-menu.open {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
   }
-  
+
   .profile-info {
     display: flex;
     flex-direction: column;
@@ -186,14 +187,14 @@
     text-align: center;
     margin-bottom: 10px;
   }
-  
+
   .profile-menu-img {
     width: 50px;
     height: 50px;
     border-radius: 50%;
     margin-bottom: 8px;
   }
-  
+
   .logout-button {
     width: 100%;
     padding: 8px;
@@ -204,9 +205,41 @@
     cursor: pointer;
     transition: background 0.3s ease;
   }
-  
+
   .logout-button:hover {
     background: rgb(119, 40, 40);
   }
-  
+
+  /* 🔹 MENÚ HAMBURGUESA */
+  .burger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+
+    span {
+      display: block;
+      width: 25px;
+      height: 3px;
+      background-color: var(--ion-color-primary-contrast);
+      transition: 0.3s;
+    }
+  }
+
+  /* 📌 ESTILOS PARA MÓVILES */
+  @media (max-width: 768px) {
+    .nav-links {
+      display: none;
+    }
+
+    .burger {
+      display: flex;
+    }
+
+    .nav-links.open {
+      display: flex;
+    }
+  }
 }
